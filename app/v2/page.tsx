@@ -8,9 +8,18 @@ import {
 } from "@/components/ui/resizable";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { CubeIcon, TrashIcon } from "@radix-ui/react-icons";
+import Nav from "@/components/nav";
+import {
+  CubeIcon,
+  TrashIcon,
+  Archive,
+  Send,
+  ArchiveX,
+  Trash2,
+  Inbox,
+} from "@radix-ui/react-icons";
 import { ThemeToggleAlt } from "@/components/theme/theme-toggle";
-import { Avatar } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Home() {
   const defaultCollapsed = false;
@@ -52,7 +61,7 @@ export default function Home() {
               "min-w-[50px] transition-all duration-300 ease-in-out",
           )}
         >
-          <div className="grid gap-1 p-2 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2">
+          {/* <div className="dev grid gap-1 p-2 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2">
             <Button
               className={isCollapsed ? "" : "justify-start gap-2"}
               variant={"default"}
@@ -61,14 +70,62 @@ export default function Home() {
               <CubeIcon />
               <span className={isCollapsed ? "hidden" : "flex"}>Sandboxes</span>
             </Button>
+          </div> */}
+          <Nav
+            isCollapsed={isCollapsed}
+            links={[
+              {
+                title: "Inbox",
+                label: "128",
+                icon: Inbox,
+                variant: "default",
+              },
+              {
+                title: "Drafts",
+                label: "9",
+                icon: File,
+                variant: "ghost",
+              },
+              {
+                title: "Sent",
+                label: "",
+                icon: Send,
+                variant: "ghost",
+              },
+              {
+                title: "Junk",
+                label: "23",
+                icon: ArchiveX,
+                variant: "ghost",
+              },
+              {
+                title: "Trash",
+                label: "",
+                icon: Trash2,
+                variant: "ghost",
+              },
+              {
+                title: "Archive",
+                label: "",
+                icon: Archive,
+                variant: "ghost",
+              },
+            ]}
+          />
+          <div className="border-t flex gap-2 p-2">
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+            jdboachie@gmail.com
           </div>
-          <div className="border-t p-2">jdboachie@gmail.com</div>
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel
           defaultSize={defaultLayout[1]}
           minSize={16}
           maxSize={25}
+          className="hidden"
         >
           <div className="p-2 size-full">
             <div className="p-2">Connections</div>
