@@ -2,6 +2,7 @@ import "cal-sans";
 import "./globals.css";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme/theme-provider";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 export const metadata: Metadata = {
   title: "...",
@@ -22,7 +23,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <TooltipProvider>
+            {children}
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>

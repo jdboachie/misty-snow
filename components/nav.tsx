@@ -1,8 +1,12 @@
 "use client";
 
+import {
+  ChatText as ChatTextIcon,
+  Database as DatabaseIcon,
+  Gear as GearIcon,
+  ListMagnifyingGlass as ListMagnifyingGlassIcon
+  } from "@phosphor-icons/react"
 import Link from "next/link";
-import { LucideIcon } from "lucide-react";
-
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -11,17 +15,43 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-interface NavProps {
-  isCollapsed: boolean;
-  links: {
-    title: string;
-    label?: string;
-    icon: LucideIcon;
-    variant: "default" | "ghost";
-  }[];
-}
 
-const Nav = ({ links, isCollapsed }: NavProps) => {
+const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
+
+  interface LinkInterface {
+    title: string,
+    label: string,
+    icon: any,
+    variant: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined
+  }
+
+  const links: LinkInterface[] = [
+    {
+      title: "Connections",
+      label: "3",
+      icon: DatabaseIcon,
+      variant: "default",
+    },
+    {
+      title: "Queries",
+      label: "12",
+      icon: ListMagnifyingGlassIcon,
+      variant: "ghost",
+    },
+    {
+      title: "Settings",
+      label: "",
+      icon: GearIcon,
+      variant: "ghost",
+    },
+    {
+      title: "Feedback",
+      label: "",
+      icon: ChatTextIcon,
+      variant: "ghost"
+    }
+  ]
+
   return (
     <div
       data-collapsed={isCollapsed}

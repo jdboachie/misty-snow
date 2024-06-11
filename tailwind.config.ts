@@ -68,14 +68,6 @@ const config = {
           to: { height: "0" },
         },
       },
-      backgroundImage: ({ theme }) => ({
-        "vc-border-gradient-dark": `radial-gradient(at left top, ${theme(
-          "colors.zinc.400",
-        )}, 50px, ${theme("colors.zinc.800")} 50%)`,
-        "vc-border-gradient-light": `radial-gradient(at left top, ${theme(
-          "colors.zinc.400",
-        )}, 50px, ${theme("colors.zinc.200")} 50%)`,
-      }),
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",

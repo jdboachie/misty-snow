@@ -6,24 +6,51 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+  ContextMenuShortcut,
+  ContextMenuSeparator,
+  ContextMenuSub,
+  ContextMenuSubContent,
+  ContextMenuSubTrigger,
+  ContextMenuCheckboxItem,
+} from "@/components/ui/context-menu"
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import Nav from "@/components/nav";
-import {
-  CubeIcon,
-  TrashIcon,
-  Archive,
-  Send,
-  ArchiveX,
-  Trash2,
-  Inbox,
-} from "@radix-ui/react-icons";
 import { ThemeToggleAlt } from "@/components/theme/theme-toggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Nav from "@/components/nav";
+import { Input } from "@/components/ui/input";
+import {
+  MagnifyingGlass as MagnifyingGlassIcon,
+  DotsThree as DotsThreeIcon,
+} from "@phosphor-icons/react";
+import { Separator } from "@/components/ui/separator";
+import { MongoDBIcon } from "@/components/icons"
+import QueryTool from "@/components/tools/querytool";
+
 
 export default function Home() {
   const defaultCollapsed = false;
-  const defaultLayout = [265, 265, 830];
+  const defaultLayout = [17, 23, 60];
   const navCollapsedSize = 4;
   const [isCollapsed, setIsCollapsed] =
     React.useState<boolean>(defaultCollapsed);
@@ -43,10 +70,9 @@ export default function Home() {
           defaultSize={defaultLayout[0]}
           collapsedSize={navCollapsedSize}
           collapsible={true}
-          collapsed={isCollapsed}
           minSize={12}
-          maxSize={15}
-          onCollapse={(isCollapsed: boolean) => {
+          maxSize={25}
+          onCollapse={() => {
             setIsCollapsed(true);
             document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(
               isCollapsed,
@@ -56,104 +82,137 @@ export default function Home() {
             setIsCollapsed(false);
           }}
           className={cn(
-            "flex flex-col justify-between",
+            "flex flex-col",
             isCollapsed &&
               "min-w-[50px] transition-all duration-300 ease-in-out",
           )}
         >
-          {/* <div className="dev grid gap-1 p-2 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2">
-            <Button
-              className={isCollapsed ? "" : "justify-start gap-2"}
-              variant={"default"}
-              size={isCollapsed ? "icon" : "default"}
-            >
-              <CubeIcon />
-              <span className={isCollapsed ? "hidden" : "flex"}>Sandboxes</span>
-            </Button>
-          </div> */}
-          <Nav
-            isCollapsed={isCollapsed}
-            links={[
-              {
-                title: "Inbox",
-                label: "128",
-                icon: Inbox,
-                variant: "default",
-              },
-              {
-                title: "Drafts",
-                label: "9",
-                icon: File,
-                variant: "ghost",
-              },
-              {
-                title: "Sent",
-                label: "",
-                icon: Send,
-                variant: "ghost",
-              },
-              {
-                title: "Junk",
-                label: "23",
-                icon: ArchiveX,
-                variant: "ghost",
-              },
-              {
-                title: "Trash",
-                label: "",
-                icon: Trash2,
-                variant: "ghost",
-              },
-              {
-                title: "Archive",
-                label: "",
-                icon: Archive,
-                variant: "ghost",
-              },
-            ]}
-          />
-          <div className="border-t flex gap-2 p-2">
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+          <div className="p-2">
+          <Select>
+            <SelectTrigger className="">
+              <SelectValue placeholder="knust_student_data" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Postgres</SelectLabel>
+                <SelectItem value="est">knust_student_data</SelectItem>
+                <SelectItem value="cst">lab_pal</SelectItem>
+              </SelectGroup>
+              <SelectGroup>
+                <SelectLabel>MongoDB</SelectLabel>
+                <SelectItem value="awst">
+                  mongodb_atlas_83298322db
+                </SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          </div>
+          <Separator />
+          <div className="">
+            <Nav isCollapsed={isCollapsed} />
+          </div>
+          <Separator />
+          <div className="grow p-2 py-4">
+            Quick access area
+          </div>
+          <Separator />
+          <div className="flex items-center gap-2 p-2">
+            <Avatar className="border">
+              <AvatarImage src="jude.jpg" alt="@shadcn" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
-            jdboachie@gmail.com
+            <div className="grow pt-0.5">
+              <p className="text-sm truncate">Jude Boachie</p>
+            </div>
+            <Button size="icon" variant={'ghost'}>
+              <DotsThreeIcon className="size-5" />
+            </Button>
           </div>
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel
           defaultSize={defaultLayout[1]}
-          minSize={16}
-          maxSize={25}
-          className="hidden"
+          minSize={20}
+          // maxSize={25}
         >
-          <div className="p-2 size-full">
-            <div className="p-2">Connections</div>
-            <div className="rounded-lg border grid p-2">
-              <div className="p-2 flex justify-between">
-                <p className="text-base font-semibold">knust_data</p>
-                <p className="text-primary/75">?</p>
-              </div>
-              <div className="p-2 grid">
-                <p className="text-xs truncate">Created by @g.elvis</p>
-                <p className="text-xs truncate">Updated 5mins ago</p>
-              </div>
-              <div className="p-2 flex grid-flow-col gap-2">
-                <Button variant={"secondary"} size={"sm"}>
-                  Connect
-                </Button>
-                <Button variant={"destructive"} size={"sm"}>
-                  <TrashIcon />
-                  Delete
-                </Button>
-              </div>
+          <Tabs defaultValue="all">
+            <div className="flex items-center py-2 px-4">
+              <h1 className="text-base font-semibold">Connections</h1>
+              <TabsList className="ml-auto">
+                <TabsTrigger
+                  value="all"
+                  className="text-neutral-600 dark:text-neutral-200"
+                >
+                  All
+                </TabsTrigger>
+                <TabsTrigger
+                  value="active"
+                  className="text-neutral-600 dark:text-neutral-200"
+                >
+                  Active
+                </TabsTrigger>
+              </TabsList>
             </div>
-          </div>
+            <Separator />
+            <div className="p-4">
+              <form>
+                <div className="relative">
+                  <MagnifyingGlassIcon className="absolute left-2 top-2.5 size-4 text-muted-foreground" />
+                  <Input placeholder="Search" className="pl-8" />
+                </div>
+              </form>
+            </div>
+            <TabsContent value="all" className="m-0 px-4">
+              <ContextMenu>
+                <ContextMenuTrigger>
+                  <div className="py-4 px-2 flex gap-2 items-center font-normal border shadow-none rounded-lg dark:bg-primary-foreground">
+                    <MongoDBIcon className="size-9" />
+                    <div className="grid gap-1 w-full">
+                      <span className="text-sm">product_data</span>
+                      <div className="flex w-full pr-2 justify-between items-center text-xs font-normal">
+                        <div className="flex gap-2 items-center">
+                          <div className="size-2 bg-green-500 rounded-full"/>
+                          <span>Connected</span>
+                        </div>
+                        <span>2min ago</span>
+                      </div>
+                    </div>
+                  </div>
+                </ContextMenuTrigger>
+                <ContextMenuContent className="w-56">
+                  <ContextMenuCheckboxItem checked>
+                    Connect
+                    <ContextMenuShortcut>⌘⇧C</ContextMenuShortcut>
+                  </ContextMenuCheckboxItem>
+                  <ContextMenuItem inset>View</ContextMenuItem>
+                  <ContextMenuItem inset>Delete</ContextMenuItem>
+                  <ContextMenuSeparator />
+                  <ContextMenuSub>
+                    <ContextMenuSubTrigger inset>More Tools</ContextMenuSubTrigger>
+                    <ContextMenuSubContent className="w-48">
+                      <ContextMenuItem>
+                        Save Page As...
+                        <ContextMenuShortcut>⇧⌘S</ContextMenuShortcut>
+                      </ContextMenuItem>
+                      <ContextMenuItem>Create Shortcut...</ContextMenuItem>
+                      <ContextMenuItem>Name Window...</ContextMenuItem>
+                      <ContextMenuSeparator />
+                      <ContextMenuItem>Developer Tools</ContextMenuItem>
+                    </ContextMenuSubContent>
+                  </ContextMenuSub>
+                </ContextMenuContent>
+            </ContextMenu>
+            </TabsContent>
+            <TabsContent value="active" className="m-0">
+              <div className="p-2">a list of ACTIVE connections here</div>
+            </TabsContent>
+          </Tabs>
+          {/* <ThemeToggleAlt /> */}
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={defaultLayout[2]}>
-          <div className="p-2 w-fit">
-            <ThemeToggleAlt />
+          <div className="size-full">
+            <QueryTool />
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>
