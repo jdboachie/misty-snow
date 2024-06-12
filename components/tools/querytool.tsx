@@ -8,13 +8,12 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import {
   Trash as TrashIcon,
   Play as PlayIcon,
-  Clock as ClockIcon,
   Share as ShareIcon,
 } from '@phosphor-icons/react';
 // import { LoadingIcon } from '@/components/icons';
 import { toast } from 'sonner';
 import Papa from 'papaparse';
-import { FileCsv, FileSql, Folder, MicrosoftExcelLogo } from '@phosphor-icons/react';
+import { FileCsv, FileSql, FloppyDisk as FloppyDiskIcon, Folder, MicrosoftExcelLogo } from '@phosphor-icons/react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,6 +21,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Separator } from '../ui/separator';
+import { Input } from '../ui/input';
 
 
 
@@ -87,10 +87,8 @@ const QueryTool = () => {
           <ResizablePanel defaultSize={50} minSize={20} className='size-full '>
             <form onSubmit={handleSubmit} className='flex flex-col size-full'>
               <div className="flex justify-between gap-2 p-1 border-b">
-                <div className="flex gap-2 p-1">
-                  <Button disabled size={'icon'} variant={'ghost'}>
-                    <ClockIcon className='size-4' />
-                  </Button>
+                <div className="grid grid-flow-col gap-2 p-1">
+                  <Input placeholder='untitled' type='text' className='shadow-none border-none font-semibold' />
                 </div>
                 <div className="flex gap-1 p-1">
                   <Tooltip>
@@ -106,11 +104,11 @@ const QueryTool = () => {
                         }}
                         variant={'ghost'}
                       >
-                        <TrashIcon className='size-4' />
+                        <FloppyDiskIcon className='size-4' />
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>Reset</p>
+                      <p>Save</p>
                     </TooltipContent>
                   </Tooltip>
                   <Tooltip>
@@ -179,11 +177,11 @@ const QueryTool = () => {
                 <DropdownMenuContent>
                   <DropdownMenuItem onClick={handleExportCSV}>
                     <FileCsv className='size-4 mr-2'/>
-                    <p className='text-xs'>Export to CSV file</p>
+                    <p className='text-xs'>Export to CSV</p>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <MicrosoftExcelLogo className='size-4 mr-2' />
-                    <p className="text-xs">Export to Microsoft Excel file</p>
+                    <p className="text-xs">Export to Microsoft Excel</p>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
