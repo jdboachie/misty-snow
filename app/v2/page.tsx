@@ -112,9 +112,11 @@ export default function Home() {
             <Nav isCollapsed={isCollapsed} />
           </div>
           <Separator />
-          <div className="grow p-2 py-4">
-            Quick access area
+
+          <div className="grow p-2 py-4 font-bold">
+            Collections
           </div>
+
           <Separator />
           <div className="flex items-center gap-2 p-2">
             <Avatar className="border">
@@ -122,7 +124,7 @@ export default function Home() {
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <div className="grow pt-0.5">
-              <p className="text-sm truncate">Jude Boachie</p>
+              <p className="text-sm truncate font-bold">Jude Boachie</p>
             </div>
             <Button size="icon" variant={'ghost'}>
               <DotsThreeIcon className="size-5" />
@@ -168,13 +170,15 @@ export default function Home() {
                   <div className="py-4 px-2 flex gap-2 items-center font-normal border shadow-none rounded-lg dark:bg-primary-foreground">
                     <MongoDBIcon className="size-9" />
                     <div className="grid gap-1 w-full">
-                      <span className="text-sm">product_data</span>
+                      <div className="flex flex-row justify-between">
+                        <span className="text-base font-bold">product_data</span>
+                        <span className="text-gray-300">2min ago</span>
+                      </div>
                       <div className="flex w-full pr-2 justify-between items-center text-xs font-normal">
                         <div className="flex gap-2 items-center">
                           <div className="size-2 bg-green-500 rounded-full"/>
-                          <span>Connected</span>
+                          <span className="lowercase text-sm">Connected</span>
                         </div>
-                        <span>2min ago</span>
                       </div>
                     </div>
                   </div>

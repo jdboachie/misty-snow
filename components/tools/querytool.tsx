@@ -88,7 +88,7 @@ const QueryTool = () => {
             <form onSubmit={handleSubmit} className='flex flex-col size-full'>
               <div className="flex justify-between gap-2 p-1 border-b">
                 <div className="grid grid-flow-col gap-2 p-1">
-                  <Input placeholder='untitled' type='text' className='shadow-none border-none font-semibold' />
+                  <Input placeholder='Enter query name' type='text' className='shadow-none border-none outline-none' />
                 </div>
                 <div className="flex gap-1 p-1">
                   <Tooltip>
@@ -175,7 +175,7 @@ const QueryTool = () => {
                 placeholder="select now()"
                 onChange={(event) => setCode(event.target.value)}
                 disabled={isLoading}
-                className={`${isLoading && 'opacity-50'} focus:outline-0 bg-background overflow-auto p-2 text-sm font-mono dark:text-primary flex grow transition-all duration-300 ease-in-out resize-none text-pretty`}
+                className={`${isLoading && 'opacity-50'} focus:outline-none bg-background overflow-auto p-2 text-sm font-mono dark:text-primary flex grow transition-all duration-300 ease-in-out resize-none text-pretty`}
               />
             </form>
           </ResizablePanel>
