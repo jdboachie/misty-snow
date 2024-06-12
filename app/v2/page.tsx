@@ -137,7 +137,7 @@ export default function Home() {
         >
           <Tabs defaultValue="all">
             <div className="flex items-center py-2 px-4">
-              <h1 className="text-base font-semibold">Connections</h1>
+              <h1 className="text-sm font-semibold">Connections</h1>
               <TabsList className="ml-auto">
                 <TabsTrigger
                   value="all"

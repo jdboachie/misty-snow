@@ -84,7 +84,7 @@ const QueryTool = () => {
     <ResizablePanelGroup direction="horizontal" className='size-full bg-background rounded-lg flex flex-col'>
       <ResizablePanel defaultSize={75}>
         <ResizablePanelGroup direction="vertical" className='size-full'>
-          <ResizablePanel defaultSize={50} minSize={20} className='size-full '>
+          <ResizablePanel defaultSize={50} minSize={10} className='size-full '>
             <form onSubmit={handleSubmit} className='flex flex-col size-full'>
               <div className="flex justify-between gap-2 p-1 border-b">
                 <div className="grid grid-flow-col gap-2 p-1">
@@ -111,6 +111,31 @@ const QueryTool = () => {
                       <p>Save</p>
                     </TooltipContent>
                   </Tooltip>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button size={'icon'} variant={'ghost'}>
+                            <ShareIcon className='size-4' />
+                            <p className="sr-only">Export</p>
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Export output</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuItem onClick={handleExportCSV}>
+                        <FileCsv className='size-4 mr-2'/>
+                        <p className='text-xs'>Export to CSV</p>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <MicrosoftExcelLogo className='size-4 mr-2' />
+                        <p className="text-xs">Export to Microsoft Excel</p>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                   <Tooltip>
                     <TooltipTrigger>
                       <Button
@@ -159,33 +184,6 @@ const QueryTool = () => {
             className='activehandle'
           />
           <ResizablePanel minSize={20} defaultSize={50}>
-            <div className="border-b flex gap-2 p-2 justify-end">
-              <DropdownMenu>
-                <DropdownMenuTrigger>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button size={'icon'} variant={'ghost'}>
-                        <ShareIcon className='size-4' />
-                        <p className="sr-only">Export</p>
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Export output</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuItem onClick={handleExportCSV}>
-                    <FileCsv className='size-4 mr-2'/>
-                    <p className='text-xs'>Export to CSV</p>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <MicrosoftExcelLogo className='size-4 mr-2' />
-                    <p className="text-xs">Export to Microsoft Excel</p>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
             <div className={`dark:bg-darkest bg-background overflow-auto h-[calc(100%-49px)]`}>
               {outputData ? (
                 <table className='table-auto bg-primary-foreground w-fit h-fit text-left border-collapse transition-all duration-300 ease-in-out'>
