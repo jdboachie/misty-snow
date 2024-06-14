@@ -44,9 +44,9 @@ import {
   DotsThree as DotsThreeIcon,
 } from "@phosphor-icons/react";
 import { Separator } from "@/components/ui/separator";
-import { MongoDBIcon } from "@/components/icons"
+import { MongoDBIcon } from "@/components/icons/icons"
 import QueryTool from "@/components/tools/querytool";
-
+import Collections from "@/components/Collections"
 
 export default function Home() {
   const defaultCollapsed = false;
@@ -112,13 +112,10 @@ export default function Home() {
             <Nav isCollapsed={isCollapsed} />
           </div>
           <Separator />
-
-          <div className="grow p-2 py-4 font-bold">
-            Collections
-          </div>
-
+            <Collections></Collections>
           <Separator />
-          <div className="flex items-center gap-2 p-2">
+
+          <div className="flex items-center gap-2 p-2 fixed bottom-2">
             <Avatar className="border">
               <AvatarImage src="jude.jpg" alt="@shadcn" />
               <AvatarFallback>CN</AvatarFallback>
