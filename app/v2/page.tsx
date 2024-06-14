@@ -22,6 +22,14 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import {
   ContextMenu,
   ContextMenuContent,
   ContextMenuItem,
@@ -46,14 +54,17 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { MongoDBIcon } from "@/components/icons"
 import QueryTool from "@/components/tools/querytool";
+import { signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 
 export default function Home() {
   const defaultCollapsed = false;
   const defaultLayout = [17, 23, 60];
   const navCollapsedSize = 4;
-  const [isCollapsed, setIsCollapsed] =
-    React.useState<boolean>(defaultCollapsed);
+  const [isCollapsed, setIsCollapsed] = React.useState<boolean>(defaultCollapsed);
+
+  const { data } = useSession()
 
   return (
     <main className="h-screen size-full p-2 bg-secondary text-sm">
@@ -116,17 +127,70 @@ export default function Home() {
             Quick access area
           </div>
           <Separator />
-          <div className="flex items-center gap-2 p-2">
-            <Avatar className="border">
-              <AvatarImage src="jude.jpg" alt="@shadcn" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-            <div className="grow pt-0.5">
-              <p className="text-sm truncate">Jude Boachie</p>
+          {/* <div className="flex items-center p-2">
+            <div className="w-full">
+              <DropdownMenu>
+                <DropdownMenuTrigger className="w-full">
+                  <Button size="default" variant={'ghost'} className="flex px-1 w-full justify-between  h-10">
+                    <div className="flex gap-2 items-center">
+                      <Avatar className="border">
+                        <AvatarImage src="jude.jpg" alt="@shadcn" />
+                        <AvatarFallback>JB</AvatarFallback>
+                      </Avatar>
+                      <div className="grow pt-0.5">
+                        <p className="text-sm truncate">Jude Boachie</p>
+                      </div>
+                    </div>
+                    <DotsThreeIcon className="size-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-full min-w-56">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Logout</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
-            <Button size="icon" variant={'ghost'}>
-              <DotsThreeIcon className="size-5" />
-            </Button>
+          </div> */}
+          <div className="grid">
+            {data?.user ?
+            <div className="w-full">
+              <DropdownMenu>
+                <DropdownMenuTrigger className="w-full p-2">
+                  <Button size="default" variant={'ghost'} className="flex px-1 w-full justify-between  h-10">
+                    <div className="flex gap-2 items-center">
+                      <Avatar className="border">
+                        <AvatarImage src={data?.user.image || 'jude.png'} alt="@shadcn" />
+                        <AvatarFallback>JB</AvatarFallback>
+                      </Avatar>
+                      <div className="grow pt-0.5">
+                        <p className="text-sm truncate">{data?.user.name}</p>
+                      </div>
+                    </div>
+                    <DotsThreeIcon className="size-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-full min-w-56">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  {/* <DropdownMenuSeparator /> */}
+                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  {/* <DropdownMenuItem>Billing</DropdownMenuItem> */}
+                  {/* <DropdownMenuItem>Team</DropdownMenuItem> */}
+                  {/* <DropdownMenuItem>Subscription</DropdownMenuItem> */}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem className="p-0 grid">
+                    <Button
+                      variant={'ghost'}
+                      className="p-0 px-1.5 flex justify-start font-normal"
+                      onClick={() => signOut()}>Sign Out</Button>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+            :
+            <p>User will not be able to access this page if not signed in</p>
+            }
           </div>
         </ResizablePanel>
         <ResizableHandle withHandle />

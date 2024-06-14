@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@phosphor-icons/react": "^2.1.5",
+    "@phosphor-icons/react": "^2.1.6",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",
@@ -27,28 +27,29 @@
     "clsx": "^2.1.1",
     "framer-motion": "^11.2.10",
     "next": "14.2.1",
+    "next-auth": "5.0.0-beta.19",
     "next-themes": "^0.3.0",
     "papaparse": "^5.4.1",
     "pg": "^8.12.0",
     "phospho": "1.3.3",
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-resizable-panels": "^2.0.19",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^20.14.2",
     "@types/papaparse": "^5.3.14",
     "@types/pg": "^8.11.6",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.19",
-    "eslint": "^8",
+    "eslint": "^8.57.0",
     "eslint-config-next": "14.2.1",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.3",
-    "typescript": "^5"
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.4.5"
   }
 }

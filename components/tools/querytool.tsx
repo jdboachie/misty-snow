@@ -97,11 +97,11 @@ const QueryTool = () => {
                         disabled={isLoading}
                         size={'icon'}
                         className='flex'
-                        type='reset'
-                        onClick={() => {
-                          setCode('');
-                          setOutputData(null);
-                        }}
+                        // type='reset'
+                        // onClick={() => {
+                        //   setCode('');
+                        //   setOutputData(null);
+                        // }}
                         variant={'ghost'}
                       >
                         <FloppyDiskIcon className='size-4' />
@@ -159,16 +159,6 @@ const QueryTool = () => {
                   </Tooltip>
                 </div>
               </div>
-              {/* <CodeEditor
-                ref={inputRef}
-                value={code}
-                language="sql"
-                minHeight={1}
-                placeholder="select now()"
-                onChange={(event: any) => setCode(event.target.value)}
-                disabled={isLoading}
-                className={`${isLoading && 'opacity-50'} bg-background overflow-scroll text-sm font-mono flex grow transition-all duration-300 ease-in-out resize-none text-pretty`}
-              /> */}
               <textarea
                 ref={inputRef}
                 value={code}

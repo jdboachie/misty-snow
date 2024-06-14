@@ -15,14 +15,29 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import {
+  DotsThree as DotsThreeIcon,
+} from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { PlusIcon, PlayIcon } from "@radix-ui/react-icons";
 import { ThemeToggle, ThemeToggleAlt } from "@/components/theme/theme-toggle";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { SignIn, SignOut } from "@/components/auth/components";
+import { auth } from "@/auth";
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth()
+
   return (
     <main className="px-4 py-12 grid gap-4 max-w-3xl mx-auto divide-y">
       <section className="p-4 grid gap-2">
@@ -116,16 +131,40 @@ export default function Home() {
           </p>
         </div>
         <div className="grid">
-          <div className="grid grid-flow-col p-2 px-3 gap-1.5 w-fit">
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-            <div className="grid grid-flow-row ">
-              <p className="text-sm font-semibold">Emmanuel Sarkodie</p>
-              <p className="text-xs">devsark@dbex.so</p>
-            </div>
+          {session?.user ?
+          <div className="w-full">
+            <DropdownMenu>
+              <DropdownMenuTrigger className="w-full p-2">
+                <Button size="default" variant={'ghost'} className="flex px-1 w-full justify-between  h-10">
+                  <div className="flex gap-2 items-center">
+                    <Avatar className="border">
+                      <AvatarImage src={session?.user.image || 'jude.png'} alt="@shadcn" />
+                      <AvatarFallback>JB</AvatarFallback>
+                    </Avatar>
+                    <div className="grow pt-0.5">
+                      <p className="text-sm truncate">{session?.user.name}</p>
+                    </div>
+                  </div>
+                  <DotsThreeIcon className="size-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-full min-w-56">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                {/* <DropdownMenuSeparator /> */}
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                {/* <DropdownMenuItem>Billing</DropdownMenuItem> */}
+                {/* <DropdownMenuItem>Team</DropdownMenuItem> */}
+                {/* <DropdownMenuItem>Subscription</DropdownMenuItem> */}
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="p-0">
+                  <SignOut />
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
+          :
+          <SignIn />
+          }
         </div>
       </section>
       <section>
