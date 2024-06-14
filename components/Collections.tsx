@@ -68,7 +68,7 @@ export default function Collections() {
 
     return (
         <div className="flex flex-col">
-            <div className="collections flex items-center justify-between cursor-pointer dark:hover:bg-muted mx-1 my-2 rounded" onClick={handleDropDown}>
+            <div className="collections flex items-center justify-between cursor-pointer hover:bg-muted dark:hover:bg-muted mx-1 my-2 rounded" onClick={handleDropDown}>
                 <div className="grow font-bold px-1 py-1">Collections</div>
                 <DropDown className={`size-5 text-slate-700 dark:text-white ${isDropDown?'rotate-0': 'rotate-90'} transition-transform duration-300`}/>
             </div>
@@ -86,10 +86,10 @@ export default function Collections() {
                                     <div className="grid col-span-5">
                                         <div className="flex items-center gap-2">
                                             {column.isPk === true ? <Key className="size-4 -rotate-45" /> : <ColumnIcon className="size-4" />}
-                                            <div className="capitalize text-gray-100">{column.col_name}</div>
+                                            <div className="capitalize text-black dark:text-gray-100">{column.col_name}</div>
                                         </div>
                                     </div>
-                                    <div className="type grid col-span-1 text-xs text-muted-foreground">{column.type}</div>
+                                    <div className="type grid col-span-1 text-xs text-gray-700 dark:text-muted-foreground">{column.type}</div>
                                 </div>
                             ))}
                         </div>
