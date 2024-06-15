@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  ChatText as ChatTextIcon,
+  Chat as ChatIcon,
   Database as DatabaseIcon,
   Gear as GearIcon,
   ListMagnifyingGlass as ListMagnifyingGlassIcon
@@ -47,7 +47,7 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
     {
       title: "Feedback",
       label: "",
-      icon: ChatTextIcon,
+      icon: ChatIcon,
       variant: "ghost"
     }
   ]
@@ -71,7 +71,7 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
                       "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
                   )}
                 >
-                  <link.icon className="h-4 w-4" />
+                  <link.icon className="size-4" />
                   <span className="sr-only">{link.title}</span>
                 </Link>
               </TooltipTrigger>
@@ -95,7 +95,7 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
                 "justify-start",
               )}
             >
-              <link.icon className="mr-2 h-4 w-4" />
+              <link.icon className="mr-2 size-4" />
               {link.title}
               {link.label && (
                 <span

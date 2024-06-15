@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import CodeEditor from '@uiw/react-textarea-code-editor';
+import Editor from '@monaco-editor/react';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 // import useDatabase from '@/lib/hooks';
 import { Button } from '@/components/ui/button';
@@ -22,17 +22,27 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Separator } from '../ui/separator';
 import { Input } from '../ui/input';
+import { useTheme } from 'next-themes';
 
 
 
 const QueryTool = () => {
   // const { query } = useDatabase();
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const editorRef = useRef(null);
 
   const [outputData, setOutputData] = useState<{ columns: { name: string, type: number }[]; rows: any[] } | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [code, setCode] = useState<string>('');
   const [queryCompletionTime, setQueryCompletionTime] = useState<number | null>(null);
+
+  let editorTheme;
+  const { theme, resolvedTheme } = useTheme()
+  if (( theme === 'dark' ) || ( resolvedTheme === 'dark' )) {
+    editorTheme = 'vs-dark'
+  } else {
+    editorTheme = 'light'
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -78,6 +88,7 @@ const QueryTool = () => {
       toast.error('No data to export');
     }
   };
+
 
   return (
     <div className="grid size-full">
@@ -159,13 +170,20 @@ const QueryTool = () => {
                   </Tooltip>
                 </div>
               </div>
-              <textarea
+              {/* <textarea
                 ref={inputRef}
                 value={code}
                 placeholder="select now()"
                 onChange={(event) => setCode(event.target.value)}
                 disabled={isLoading}
                 className={`${isLoading && 'opacity-50'} focus:outline-0 bg-background overflow-auto p-2 text-sm font-mono dark:text-primary flex grow transition-all duration-300 ease-in-out resize-none text-pretty`}
+              /> */}
+              <Editor
+                height="100vh"
+                defaultLanguage="sql"
+                defaultValue="-- WRITE YOUR PROMPT HERE"
+                theme={editorTheme}
+
               />
             </form>
           </ResizablePanel>

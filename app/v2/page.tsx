@@ -52,9 +52,9 @@ import {
   DotsThree as DotsThreeIcon,
 } from "@phosphor-icons/react";
 import { Separator } from "@/components/ui/separator";
-import { MongoDBIcon } from "@/components/icons"
+import { DbexIcon, MongoDBIcon } from "@/components/icons"
 import QueryTool from "@/components/tools/querytool";
-import { signOut } from "next-auth/react";
+import { signOut, signIn } from "next-auth/react";
 import { useSession } from "next-auth/react";
 
 
@@ -98,25 +98,10 @@ export default function Home() {
               "min-w-[50px] transition-all duration-300 ease-in-out",
           )}
         >
-          <div className="p-2">
-          <Select>
-            <SelectTrigger className="">
-              <SelectValue placeholder="knust_student_data" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Postgres</SelectLabel>
-                <SelectItem value="est">knust_student_data</SelectItem>
-                <SelectItem value="cst">lab_pal</SelectItem>
-              </SelectGroup>
-              <SelectGroup>
-                <SelectLabel>MongoDB</SelectLabel>
-                <SelectItem value="awst">
-                  mongodb_atlas_83298322db
-                </SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <div className="p-2 grid">
+            <div className="p-2 flex gap-2">
+              <DbexIcon className="size-5 -rotate-6 text-primary" />
+            </div>
           </div>
           <Separator />
           <div className="">
@@ -189,7 +174,13 @@ export default function Home() {
               </DropdownMenu>
             </div>
             :
-            <p>User will not be able to access this page if not signed in</p>
+            <>
+              <p>User will not be able to access this page if not signed in</p>
+              <Button
+                variant={'ghost'}
+                className="p-0 px-1.5 flex justify-start font-normal"
+                onClick={() => signIn()}>Sign In</Button>
+            </>
             }
           </div>
         </ResizablePanel>

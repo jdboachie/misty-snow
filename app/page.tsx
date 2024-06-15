@@ -32,7 +32,7 @@ import { Button } from "@/components/ui/button";
 import { PlusIcon, PlayIcon } from "@radix-ui/react-icons";
 import { ThemeToggle, ThemeToggleAlt } from "@/components/theme/theme-toggle";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { SignIn, SignOut } from "@/components/auth/components";
+import { SignIn, SignOut } from "@/components/auth/server";
 import { auth } from "@/auth";
 
 export default async function Home() {
