@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SessionProvider } from "next-auth/react"
+import { Inter_Tight } from "next/font/google"
 
 import localFont from "next/font/local";
 
@@ -17,8 +18,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "...",
-  description: "***",
+  title: "Dbex",
+  description: "Database Explorer and Studio",
 };
 
 export default function RootLayout({
@@ -28,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <SessionProvider>
           <ThemeProvider
             attribute="class"
