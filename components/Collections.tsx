@@ -1,7 +1,9 @@
-import { TableIcon } from "@/components/icons/TableIcon";
+"use client"
+
 import { DropDown } from "@/components/icons/DropDown";
 import { Key } from "@phosphor-icons/react";
 import { ColumnIcon } from "@/components/icons/ColumnIcon";
+import { Table } from "@phosphor-icons/react";
 import { useState, useRef } from "react";
 export default function Collections() {
     const tableInfo = [
@@ -43,9 +45,24 @@ export default function Collections() {
                     'type': 'varchar',
                     'isPk': false
                 }
+                
             ]
         },
         {
+            'table_name': 'order_data',
+            'columns': [
+                {
+                    'col_name': 'order_id',
+                    'type': 'int',
+                    'isPk': true
+                },
+                {
+                    'col_name': 'order_date',
+                    'type': 'date',
+                    'isPk': false
+                }
+            ]
+        },{
             'table_name': 'order_data',
             'columns': [
                 {
@@ -67,7 +84,7 @@ export default function Collections() {
     
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col lg:h-96 overflow-auto">
             <div className="collections flex items-center justify-between cursor-pointer hover:bg-muted dark:hover:bg-muted mx-1 my-2 rounded" onClick={handleDropDown}>
                 <div className="grow font-bold px-1 py-1">Collections</div>
                 <DropDown className={`size-5 text-slate-700 dark:text-white ${isDropDown?'rotate-0': 'rotate-90'} transition-transform duration-300`}/>
@@ -77,7 +94,7 @@ export default function Collections() {
                 {tableInfo.map((element, tableIndex) => (
                     <div className="table-container px-3 py-1" key={tableIndex}>
                         <div className="table-name flex flex-row items-center gap-2">
-                            <TableIcon className="text-slate-700 dark:text-white size-4" />
+                            <Table className="text-slate-700 dark:text-white size-4" />
                             <div className="table-name capitalize font-semibold">{element.table_name}</div>
                         </div>
                         <div className="table-columns text-sm px-4 py-2 flex flex-col gap-2">

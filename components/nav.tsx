@@ -1,11 +1,12 @@
 "use client";
-
+import { usePathname } from 'next/navigation'
 import {
   ChatText as ChatTextIcon,
   Database as DatabaseIcon,
   Gear as GearIcon,
-  ListMagnifyingGlass as ListMagnifyingGlassIcon
-  } from "@phosphor-icons/react"
+  ListMagnifyingGlass as ListMagnifyingGlassIcon,
+  Table as TableIcon
+} from "@phosphor-icons/react"
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
@@ -15,42 +16,69 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+import { useState } from "react";
 
-const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
+const Nav = ({ isCollapsed }: { isCollapsed: boolean }) => {
 
   interface LinkInterface {
     title: string,
     label: string,
     icon: any,
+    href: string,
     variant: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined
   }
+
+  const [activeLink, setActiveLink] = useState(usePathname() === "/v2" ? "Connections" : "Queries");
 
   const links: LinkInterface[] = [
     {
       title: "Connections",
       label: "3",
       icon: DatabaseIcon,
-      variant: "default",
+      variant: `${activeLink === "Connections" ? "default" : "ghost"}`,
+      href:'/v2'
     },
     {
       title: "Queries",
       label: "12",
       icon: ListMagnifyingGlassIcon,
-      variant: "ghost",
+      variant: `${activeLink === "Queries" ? "default" : "ghost"}`,
+      href: '/queries'
     },
     {
       title: "Settings",
       label: "",
       icon: GearIcon,
-      variant: "ghost",
+      variant: `${activeLink === "Settings" ? "default" : "ghost"}`,
+      href:''
     },
     {
       title: "Feedback",
       label: "",
       icon: ChatTextIcon,
-      variant: "ghost"
+      variant: `${activeLink === "Feedback" ? "default" : "ghost"}`,
+      href:''
+    },
+    {
+      title: "Collections",
+      label: "",
+      icon: TableIcon,
+      variant: "ghost",
+      href:''
     }
   ]
+
+  const handleActiveLink = (title: string) => {
+    setActiveLink(title);
+    links.map(link => {
+      if (link.title === title) {
+        link.variant = "default";
+      } else {
+        link.variant = "ghost";
+      }
+    })
+  }
+
 
   return (
     <div
@@ -63,12 +91,13 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
             <Tooltip key={index} delayDuration={0}>
               <TooltipTrigger asChild>
                 <Link
-                  href="#"
+                  href={link.href}
+                  onClick={handleActiveLink.bind(this, link.title)}
                   className={cn(
                     buttonVariants({ variant: link.variant, size: "icon" }),
                     "h-9 w-9",
                     link.variant === "default" &&
-                      "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
+                    "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
                   )}
                 >
                   <link.icon className="h-4 w-4" />
@@ -87,11 +116,12 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
           ) : (
             <Link
               key={index}
-              href="#"
+              href={link.href}
+              onClick={handleActiveLink.bind(this, link.title)}
               className={cn(
                 buttonVariants({ variant: link.variant, size: "sm" }),
                 link.variant === "default" &&
-                  "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
+                "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
                 "justify-start",
               )}
             >
@@ -102,7 +132,7 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
                   className={cn(
                     "ml-auto",
                     link.variant === "default" &&
-                      "text-background dark:text-white",
+                    "text-background dark:text-white",
                   )}
                 >
                   {link.label}

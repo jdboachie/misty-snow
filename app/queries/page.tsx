@@ -12,12 +12,12 @@ import { cn } from "@/lib/utils";
 import { ThemeToggleAlt } from "@/components/theme/theme-toggle";
 
 import { MiddleTab } from "@/components/MiddleTab";
-import { PastConnectionCard } from "@/components/PastConnectionCard";
 
 import { Plus } from "@phosphor-icons/react";
 
 import QueryTool from "@/components/tools/querytool";
 import LeftPane from "@/components/LeftPane";
+import { PastQueryCard } from "@/components/PastQueryCard";
 
 
 export default function Home() {
@@ -70,7 +70,7 @@ export default function Home() {
         >
 
           <MiddleTab>
-            <PastConnectionCard />
+            <PastQueryCard />
           </MiddleTab>
 
           <div className="sticky top-full ">
