@@ -16,6 +16,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+import { HomeIcon } from '@radix-ui/react-icons';
+
 import { useState } from "react";
 
 const Nav = ({ isCollapsed }: { isCollapsed: boolean }) => {
@@ -28,15 +30,28 @@ const Nav = ({ isCollapsed }: { isCollapsed: boolean }) => {
     variant: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined
   }
 
-  const [activeLink, setActiveLink] = useState(usePathname() === "/v2" ? "Connections" : "Queries");
+  const getPathName = () => {
+    let pathName = usePathname().toLowerCase();
+    if (pathName == "/v2") return "Connections"
+    else if (pathName == "/home") return "Home"
+    return "Queries"
+  }
+  const [activeLink, setActiveLink] = useState(getPathName());
 
   const links: LinkInterface[] = [
+    {
+      title: "Home",
+      label: "",
+      icon: HomeIcon,
+      variant: `${activeLink === "Home" ? "default" : "ghost"}`,
+      href: '/home'
+    },
     {
       title: "Connections",
       label: "3",
       icon: DatabaseIcon,
       variant: `${activeLink === "Connections" ? "default" : "ghost"}`,
-      href:'/v2'
+      href: '/v2'
     },
     {
       title: "Queries",
@@ -50,21 +65,21 @@ const Nav = ({ isCollapsed }: { isCollapsed: boolean }) => {
       label: "",
       icon: GearIcon,
       variant: `${activeLink === "Settings" ? "default" : "ghost"}`,
-      href:''
+      href: ''
     },
     {
       title: "Feedback",
       label: "",
       icon: ChatTextIcon,
       variant: `${activeLink === "Feedback" ? "default" : "ghost"}`,
-      href:''
+      href: ''
     },
     {
       title: "Collections",
       label: "",
       icon: TableIcon,
       variant: "ghost",
-      href:''
+      href: ''
     }
   ]
 
@@ -141,6 +156,8 @@ const Nav = ({ isCollapsed }: { isCollapsed: boolean }) => {
             </Link>
           ),
         )}
+
+
       </nav>
     </div>
   );

@@ -31,7 +31,7 @@ export const PastConnectionCard = () => {
     ]
 
     return (
-        <div className="connection-container flex flex-col gap-2">{
+        <div className="connection-container flex flex-col gap-4">{
             cardData.map((element, index) => {
                 return (
                     <div className="py-4 px-2 flex gap-2 items-center font-normal border shadow-none rounded-lg dark:bg-primary-foreground" key={index}>
