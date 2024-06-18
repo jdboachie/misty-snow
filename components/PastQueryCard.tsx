@@ -29,7 +29,7 @@ export const PastQueryCard = () => {
             {
                 cardData.map((element, index) => {
                     return (
-                        <div className="py-4 px-2 flex gap-2 items-center font-normal border shadow-none rounded-lg dark:bg-primary-foreground" key={index}>
+                        <div className="py-4 px-2 flex gap-2 items-center font-normal border shadow-none rounded-lg dark:bg-custom-gradient" key={index}>
                             <div className="grid gap-1 w-full">
                                 <div className="flex flex-row justify-between">
                                     <div className="flex flex-row items-center justify-center gap-2">

@@ -34,7 +34,7 @@ export const PastConnectionCard = () => {
         <div className="connection-container flex flex-col gap-4">{
             cardData.map((element, index) => {
                 return (
-                    <div className="py-4 px-2 flex gap-2 items-center font-normal border shadow-none rounded-lg dark:bg-primary-foreground" key={index}>
+                    <div className="py-4 px-2 flex gap-2 items-center font-normal border shadow-none rounded-lg dark:bg-custom-gradient" key={index}>
                         {element.type === "MongoDB" ? <MongoDBIcon className="size-9" /> : <Postgres className="size-9" />}
                         <div className="grid gap-1 w-full">
                             <div className="flex flex-row justify-between">

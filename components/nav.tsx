@@ -16,6 +16,13 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+
+
 import { HomeIcon } from '@radix-ui/react-icons';
 
 import { useState } from "react";
@@ -157,6 +164,10 @@ const Nav = ({ isCollapsed }: { isCollapsed: boolean }) => {
           ),
         )}
 
+        {/* <Popover>
+          <PopoverTrigger>Open</PopoverTrigger>
+          <PopoverContent>Place content for the popover here.</PopoverContent>
+        </Popover> */}
 
       </nav>
     </div>
