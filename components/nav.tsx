@@ -1,12 +1,5 @@
 "use client";
 import { usePathname } from 'next/navigation'
-import {
-  ChatText as ChatTextIcon,
-  Database as DatabaseIcon,
-  Gear as GearIcon,
-  ListMagnifyingGlass as ListMagnifyingGlassIcon,
-  Table as TableIcon
-} from "@phosphor-icons/react"
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
@@ -17,13 +10,23 @@ import {
 } from "@/components/ui/tooltip";
 
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
+  Home03Icon as HomeIcon,
+  Database02Icon as DatabaseIcon,
+  SearchList02Icon as ListMagnifyingGlassIcon,
+  Settings02Icon as GearIcon,
+  Comment01Icon as ChatTextIcon,
+  Layout02Icon as TableIcon,
+} from "hugeicons-react";
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
-import { HomeIcon } from '@radix-ui/react-icons';
 
 import { useState } from "react";
 
@@ -164,10 +167,19 @@ const Nav = ({ isCollapsed }: { isCollapsed: boolean }) => {
           ),
         )}
 
-        {/* <Popover>
-          <PopoverTrigger>Open</PopoverTrigger>
-          <PopoverContent>Place content for the popover here.</PopoverContent>
-        </Popover> */}
+        <Dialog>
+          <DialogTrigger>Open</DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Are you absolutely sure?</DialogTitle>
+              <DialogDescription>
+                This action cannot be undone. This will permanently delete your account
+                and remove your data from our servers.
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+
 
       </nav>
     </div>
