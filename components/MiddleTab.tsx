@@ -30,9 +30,10 @@ import {
 } from "@/components/ui/resizable";
 
 interface AppProps {
-  children: React.ReactNode
+  children: React.ReactNode,
+  tabName: string
 }
-export const MiddleTab = ({ children }: AppProps) => {
+export const MiddleTab = ({ children, tabName}: AppProps) => {
   const defaultLayout = [17, 23, 60];
   return (
 
@@ -43,7 +44,7 @@ export const MiddleTab = ({ children }: AppProps) => {
     >
       <Tabs defaultValue="all">
         <div className="flex items-center py-2 px-4">
-          <h1 className="text-sm font-semibold">Connections</h1>
+          <h1 className="text-sm font-semibold">{tabName}</h1>
           <TabsList className="ml-auto">
             <TabsTrigger
               value="all"

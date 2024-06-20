@@ -21,7 +21,7 @@ export default function Home() {
   const defaultLayout = [17, 23, 60];
   return (
     <>
-      <MiddleTab>
+      <MiddleTab tabName="Queries">
         <PastQueryCard />
       </MiddleTab>
 
