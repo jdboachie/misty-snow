@@ -16,7 +16,6 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Connection } from '@prisma/client/edge';
 import { Lock as LockIcon, User as UserIcon } from '@phosphor-icons/react/dist/ssr';
 import { fetchAllConnections } from '@/lib/actions';
-import ConnectionCardSkeleton from './closet/skeletons/ConnectionCardSkeleton';
 
 
 const ConnectionsView = async () => {
@@ -25,17 +24,20 @@ const ConnectionsView = async () => {
   // const connections: Connection[] = []
 
   return (
-    <div className='grid'>
-      {connections.map((connection, index) => (
-        <ContextMenu key={index}>
+    <div className='grid grid-flow-row gap-2'>
+      {connections.map((connection) => (
+        <ContextMenu key={connection.id}>
           <ContextMenuTrigger className='font-mono border bg-primary-foreground shadow rounded-lg p-4 grid gap-2'>
-            <div className="flex gap-4 py-1 items-center justify-start">
+            <div className="flex gap-4 items-center justify-start">
               <Skeleton className="border size-12 rounded-full"/>
               <p className="font-semibold">{connection.databaseName}</p>
             </div>
-            <div className="flex gap-1">
+            <div className="flex gap-1 w-full truncate">
               <Badge variant={'outline'} className={`${connection.ssl && 'bg-green-500 dark:bg-green-700'} w-fit gap-1 flex`}><LockIcon /><p>SSL</p></Badge>
-              <Badge variant={'secondary'} className='flex gap-1'><UserIcon />{connection.username}</Badge>
+              <Badge variant={'outline'} className=' truncate'>
+                <UserIcon />
+                <p className="truncate">{connection.username}</p>
+              </Badge>
             </div>
             <Badge variant={'secondary'} className='truncate'>
               {connection.isConnected ? (
@@ -72,7 +74,6 @@ const ConnectionsView = async () => {
           </ContextMenuContent>
       </ContextMenu>
       ))}
-      <ConnectionCardSkeleton />
     </div>
   )
 }

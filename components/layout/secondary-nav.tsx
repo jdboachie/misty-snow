@@ -13,6 +13,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import ConnectionsView from '@/components/connectionsview'
+import ConnectionCardSkeleton from '@/components/closet/skeletons/ConnectionCardSkeleton';
 
 
 function SecondaryNav() {
@@ -44,8 +45,8 @@ function SecondaryNav() {
         <TabsContent value="all" className="m-0 px-4">
          <ConnectionsView />
         </TabsContent>
-        <TabsContent value="active" className="m-0">
-          <div className="p-2">a list of ACTIVE connections here</div>
+        <TabsContent value="active" className="m-0 px-4">
+          <ConnectionCardSkeleton />
         </TabsContent>
       </Tabs>
     </ResizablePanel>

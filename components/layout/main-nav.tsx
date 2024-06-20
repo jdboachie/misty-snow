@@ -24,7 +24,7 @@ const MainNav = () => {
 
   // will get these from cookies later
   const defaultCollapsed = false;
-  const defaultLayout = [17, 23, 60];
+  const defaultLayout = [16, 24, 60];
   const navCollapsedSize = 4;
 
   const { data } = useSession()
