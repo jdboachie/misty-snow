@@ -54,10 +54,10 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground text-base;
   }
 
   .dev {
-    @apply border border-rose-700;
+    @apply border border-pink-500;
   }
 }

@@ -13,15 +13,6 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -41,22 +32,20 @@ import {
   ContextMenuSubTrigger,
   ContextMenuCheckboxItem,
 } from "@/components/ui/context-menu"
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { ThemeToggleAlt } from "@/components/theme/theme-toggle";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import Nav from "@/components/nav";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import QueryTool from "@/components/tools/querytool";
+import { Separator } from "@/components/ui/separator";
+import { DbexIcon, MongoDBIcon } from "@/components/icons"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils";
+import Nav from "@/components/nav";
 import {
   MagnifyingGlass as MagnifyingGlassIcon,
   DotsThree as DotsThreeIcon,
 } from "@phosphor-icons/react";
-import { Separator } from "@/components/ui/separator";
-import { DbexIcon, MongoDBIcon } from "@/components/icons"
-import QueryTool from "@/components/tools/querytool";
-import { signOut, signIn } from "next-auth/react";
-import { useSession } from "next-auth/react";
 import { SignIn } from "@/components/auth/client";
+import { signOut, signIn, useSession } from "next-auth/react";
 
 
 export default function Home() {
@@ -76,7 +65,7 @@ export default function Home() {
     )
   } else {
     return (
-      <main className="h-screen size-full p-2 bg-secondary text-sm">
+      <main className="h-screen size-full p-2 bg-secondary">
         <ResizablePanelGroup
           direction="horizontal"
           onLayout={(sizes: number[]) => {
@@ -118,35 +107,9 @@ export default function Home() {
             </div>
             <Separator />
             <div className="grow p-2 py-4">
-              Quick access area
+
             </div>
             <Separator />
-            {/* <div className="flex items-center p-2">
-              <div className="w-full">
-                <DropdownMenu>
-                  <DropdownMenuTrigger className="w-full">
-                    <Button size="default" variant={'ghost'} className="flex px-1 w-full justify-between  h-10">
-                      <div className="flex gap-2 items-center">
-                        <Avatar className="border">
-                          <AvatarImage src="jude.jpg" alt="@shadcn" />
-                          <AvatarFallback>JB</AvatarFallback>
-                        </Avatar>
-                        <div className="grow pt-0.5">
-                          <p className="text-sm truncate">Jude Boachie</p>
-                        </div>
-                      </div>
-                      <DotsThreeIcon className="size-5" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-full min-w-56">
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>Logout</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-            </div> */}
             <div className="grid">
               {data?.user ?
               <div className="w-full">
@@ -167,11 +130,7 @@ export default function Home() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="w-full min-w-56">
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    {/* <DropdownMenuSeparator /> */}
                     <DropdownMenuItem>Profile</DropdownMenuItem>
-                    {/* <DropdownMenuItem>Billing</DropdownMenuItem> */}
-                    {/* <DropdownMenuItem>Team</DropdownMenuItem> */}
-                    {/* <DropdownMenuItem>Subscription</DropdownMenuItem> */}
                     <DropdownMenuSeparator />
                     <DropdownMenuItem className="p-0 grid">
                       <Button
@@ -183,13 +142,13 @@ export default function Home() {
                 </DropdownMenu>
               </div>
               :
-              <>
-                <p>User will not be able to access this page if not signed in</p>
                 <Button
                   variant={'ghost'}
                   className="p-0 px-1.5 flex justify-start font-normal"
-                  onClick={() => signIn()}>Sign In</Button>
-              </>
+                  onClick={() => signIn()}
+                >
+                  Sign In
+                </Button>
               }
             </div>
           </ResizablePanel>
@@ -197,24 +156,14 @@ export default function Home() {
           <ResizablePanel
             defaultSize={defaultLayout[1]}
             minSize={20}
-            // maxSize={25}
+            maxSize={30}
           >
             <Tabs defaultValue="all">
               <div className="flex items-center py-2 px-4">
-                <h1 className="text-sm font-semibold">Connections</h1>
+                <h4 className="font-semibold">Connections</h4>
                 <TabsList className="ml-auto">
-                  <TabsTrigger
-                    value="all"
-                    className="text-neutral-600 dark:text-neutral-200"
-                  >
-                    All
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="active"
-                    className="text-neutral-600 dark:text-neutral-200"
-                  >
-                    Active
-                  </TabsTrigger>
+                  <TabsTrigger value="all" > All </TabsTrigger>
+                  <TabsTrigger value="active"> Active </TabsTrigger>
                 </TabsList>
               </div>
               <Separator />
@@ -229,10 +178,10 @@ export default function Home() {
               <TabsContent value="all" className="m-0 px-4">
                 <ContextMenu>
                   <ContextMenuTrigger>
-                    <div className="py-4 px-2 flex gap-2 items-center font-normal border shadow-none rounded-lg dark:bg-primary-foreground">
+                    <div className="py-4 px-2 flex gap-2 items-center font-mono border shadow-none rounded-lg dark:bg-primary-foreground">
                       <MongoDBIcon className="size-9" />
                       <div className="grid gap-1 w-full">
-                        <span className="text-sm">product_data</span>
+                        <span className="text-sm font-semibold">product_data</span>
                         <div className="flex w-full pr-2 justify-between items-center text-xs font-normal">
                           <div className="flex gap-2 items-center">
                             <div className="size-2 bg-green-500 rounded-full"/>

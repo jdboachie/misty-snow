@@ -30,7 +30,7 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
       title: "Connections",
       label: "3",
       icon: DatabaseIcon,
-      variant: "default",
+      variant: "secondary",
     },
     {
       title: "Queries",
@@ -89,10 +89,12 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
               key={index}
               href="#"
               className={cn(
-                buttonVariants({ variant: link.variant, size: "sm" }),
+                buttonVariants({ variant: link.variant, size: "default" }),
                 link.variant === "default" &&
                   "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
                 "justify-start",
+                link.variant === "ghost" &&
+                "text-primary/70"
               )}
             >
               <link.icon className="mr-2 size-4" />
