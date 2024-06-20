@@ -170,20 +170,11 @@ const QueryTool = () => {
                   </Tooltip>
                 </div>
               </div>
-              {/* <textarea
-                ref={inputRef}
-                value={code}
-                placeholder="select now()"
-                onChange={(event) => setCode(event.target.value)}
-                disabled={isLoading}
-                className={`${isLoading && 'opacity-50'} focus:outline-0 bg-background overflow-auto p-2 text-sm font-mono dark:text-primary flex grow transition-all duration-300 ease-in-out resize-none text-pretty`}
-              /> */}
               <Editor
                 height="100vh"
                 defaultLanguage="sql"
-                defaultValue="-- WRITE YOUR PROMPT HERE"
+                defaultValue="-- WRITE YOUR QUERY HERE"
                 theme={editorTheme}
-
               />
             </form>
           </ResizablePanel>
@@ -199,7 +190,9 @@ const QueryTool = () => {
                     <tr className='truncate'>
                       {outputData.columns.map((col, index) => (
                         <th key={index} className='border border-t-none p-2 min-w-[10rem] w-[10rem] max-w-[10rem]'>
-                          {col.name} <br /> <span className='text-xs text-foreground/70'>({col.type})</span>
+                          {col.name}
+                          <br />
+                          <span className='text-xs text-foreground/70'>({col.type})</span>
                         </th>
                       ))}
                     </tr>
@@ -229,10 +222,10 @@ const QueryTool = () => {
               )}
             </div>
           </ResizablePanel>
-          <div className="border-t pb-px rounded-b flex text-xs w-full bg-background p-1 px-2 gap-2">
-            <p>Num rows: {outputData?.rows.length}</p>
-            <p>Num columns: {outputData?.columns.length}</p>
-            <p>Query completed in {queryCompletionTime ? queryCompletionTime : '---'}ms</p>
+          <div className="font-mono border-t rounded-b flex text-xs w-full bg-background p-2 gap-2">
+            <div className='flex gap-1'>Num rows: <p className="px-px rounded bg-primary-foreground">{outputData?.rows.length || '---'}</p> </div>
+            <div className='flex gap-1'>Num columns: <p className="px-px rounded bg-primary-foreground">{outputData?.columns.length || '---'}</p></div>
+            <div className='flex gap-1'>Query completed in <p className="px-px rounded bg-primary-foreground">{queryCompletionTime ? queryCompletionTime : '---'}ms</p></div>
           </div>
         </ResizablePanelGroup>
       </ResizablePanel>

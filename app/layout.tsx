@@ -1,10 +1,8 @@
-import "cal-sans";
 import "./globals.css";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SessionProvider } from "next-auth/react"
-import { Inter_Tight } from "next/font/google"
 
 import localFont from "next/font/local";
 
@@ -29,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans tracking-tight`}>
         <SessionProvider>
           <ThemeProvider
             attribute="class"
