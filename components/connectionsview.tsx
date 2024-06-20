@@ -25,10 +25,10 @@ const ConnectionsView = async () => {
   // const connections: Connection[] = []
 
   return (
-    <div className='grid lg:w-1/2 mx-auto gap-6 p-12'>
+    <div className='grid'>
       {connections.map((connection, index) => (
         <ContextMenu key={index}>
-          <ContextMenuTrigger className='font-mono border bg-primary-foreground shadow rounded-xl p-4 grid gap-2'>
+          <ContextMenuTrigger className='font-mono border bg-primary-foreground shadow rounded-lg p-4 grid gap-2'>
             <div className="flex gap-4 py-1 items-center justify-start">
               <Skeleton className="border size-12 rounded-full"/>
               <p className="font-semibold">{connection.databaseName}</p>

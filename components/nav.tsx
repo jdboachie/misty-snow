@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  House as HomeIcon,
   Chat as ChatIcon,
   Database as DatabaseIcon,
   Gear as GearIcon,
@@ -14,41 +15,51 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { usePathname } from "next/navigation";
+// import { HomeIcon } from "@radix-ui/react-icons";
 
 
 const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
+
+  const pathname = usePathname()
 
   interface LinkInterface {
     title: string,
     label: string,
     icon: any,
-    variant: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined
+    href?: string,
+    // variant: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined
   }
 
   const links: LinkInterface[] = [
     {
+      title: "Home",
+      label: "",
+      icon: HomeIcon,
+      href: '/app/home'
+    }
+    ,
+    {
       title: "Connections",
       label: "3",
       icon: DatabaseIcon,
-      variant: "secondary",
+      href: '/app/connections',
     },
     {
       title: "Queries",
       label: "12",
       icon: ListMagnifyingGlassIcon,
-      variant: "ghost",
+      href: '/app/queries',
     },
     {
       title: "Settings",
       label: "",
       icon: GearIcon,
-      variant: "ghost",
     },
     {
       title: "Feedback",
       label: "",
       icon: ChatIcon,
-      variant: "ghost"
     }
   ]
 
@@ -63,11 +74,11 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
             <Tooltip key={index}>
               <TooltipTrigger asChild>
                 <Link
-                  href="#"
+                  href={link.href || '#'}
                   className={cn(
-                    buttonVariants({ variant: link.variant, size: "icon" }),
+                    buttonVariants({ variant: pathname === link.href ? 'secondary': 'ghost', size: "icon" }),
                     "h-9 w-9",
-                    link.variant === "default" &&
+                    pathname === link.href &&
                       "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
                   )}
                 >
@@ -87,13 +98,13 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
           ) : (
             <Link
               key={index}
-              href="#"
+              href={link.href || '#'}
               className={cn(
-                buttonVariants({ variant: link.variant, size: "default" }),
-                link.variant === "default" &&
+                buttonVariants({ variant: pathname === link.href ? 'secondary': 'ghost', size: "default" }),
+                pathname === link.href &&
                   "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
                 "justify-start",
-                link.variant === "ghost" &&
+                pathname !== link.href &&
                 "text-primary/70"
               )}
             >
@@ -103,8 +114,8 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
                 <span
                   className={cn(
                     "ml-auto",
-                    link.variant === "default" &&
-                      "text-background dark:text-white",
+                    pathname === link.href &&
+                      "",
                   )}
                 >
                   {link.label}
