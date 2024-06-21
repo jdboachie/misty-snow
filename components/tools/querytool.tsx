@@ -99,7 +99,7 @@ const QueryTool = () => {
             <form onSubmit={handleSubmit} className='flex flex-col size-full'>
               <div className="flex justify-between gap-2 p-1 border-b">
                 <div className="grid grid-flow-col gap-2 p-1">
-                  <Input placeholder='untitled' type='text' className='shadow-none border-none font-semibold' />
+                  <Input placeholder='untitled' type='text' className='shadow-none border-0 outline-0' />
                 </div>
                 <div className="flex gap-1 p-1">
                   <Tooltip>

@@ -15,7 +15,7 @@ export default function Home({
   children: React.ReactNode;
 }) {
 
-  const defaultLayout = [17, 23, 60];
+  const defaultLayout = [13, 27, 60];
 
   return (
     <main className="h-screen size-full">
@@ -28,7 +28,7 @@ export default function Home({
         // }}
         className="grid size-full items-stretch"
       >
-        <MainNav />
+        <MainNav defaultSize={defaultLayout[0]} />
         <ResizableHandle withHandle />
         <SecondaryNav />
         <ResizableHandle withHandle />

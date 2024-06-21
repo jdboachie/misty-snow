@@ -1,6 +1,14 @@
 "use client";
 
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import {
   House as HomeIcon,
   Chat as ChatIcon,
   Database as DatabaseIcon,
@@ -9,14 +17,13 @@ import {
   } from "@phosphor-icons/react"
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { usePathname } from "next/navigation";
-// import { HomeIcon } from "@radix-ui/react-icons";
 
 
 const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
@@ -51,6 +58,9 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
       icon: ListMagnifyingGlassIcon,
       href: '/app/queries',
     },
+  ]
+
+  const secondaryLinks: LinkInterface[] = [
     {
       title: "Settings",
       label: "",
@@ -78,8 +88,8 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
                   className={cn(
                     buttonVariants({ variant: pathname === link.href ? 'secondary': 'ghost', size: "icon" }),
                     "h-9 w-9",
-                    pathname === link.href &&
-                      "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
+                    pathname === link.href ?
+                      "dark:bg-muted dark:hover:bg-muted dark:hover:text-white" : "text-primary/70"
                   )}
                 >
                   <link.icon className="size-4" />
@@ -114,14 +124,88 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
                 <span
                   className={cn(
                     "ml-auto",
-                    pathname === link.href &&
-                      "",
                   )}
                 >
                   {link.label}
                 </span>
               )}
             </Link>
+          ),
+        )}
+        {secondaryLinks.map((link, index) =>
+          isCollapsed ? (
+            <Tooltip key={index}>
+              <TooltipTrigger asChild>
+                <Dialog>
+                  <DialogTrigger>
+                    <Button
+                      size={'icon'}
+                      variant={pathname === link.href ? 'secondary' : 'ghost'}
+                      className={cn(
+                        pathname === link.href ?
+                          "dark:bg-muted dark:hover:bg-muted dark:hover:text-white" : "text-muted-foreground"
+                      )}
+                    >
+                      <link.icon className="size-4" />
+                      <span className="sr-only">{link.title}</span>
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Are you absolutely sure?</DialogTitle>
+                      <DialogDescription>
+                        This action cannot be undone. This will permanently delete your account
+                        and remove your data from our servers.
+                      </DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
+              </TooltipTrigger>
+              <TooltipContent side="right" className="flex items-center gap-4">
+                {link.title}
+                {link.label && (
+                  <span className="ml-auto text-muted-foreground">
+                    {link.label}
+                  </span>
+                )}
+              </TooltipContent>
+            </Tooltip>
+          ) : (
+            <Dialog
+              key={index}
+            >
+              <DialogTrigger>
+                <Button
+                  variant={pathname === link.href ? 'secondary' : 'ghost'}
+                  className={cn(
+                    "justify-start w-full",
+                    pathname === link.href ?
+                      "dark:bg-muted dark:hover:bg-muted dark:hover:text-white" : "text-muted-foreground"
+                  )}
+                >
+                  <link.icon className="mr-2 size-4" />
+                  {link.title}
+                  {link.label && (
+                    <span
+                      className={cn(
+                        "ml-auto",
+                      )}
+                    >
+                      {link.label}
+                    </span>
+                  )}
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Are you absolutely sure?</DialogTitle>
+                  <DialogDescription>
+                    This action cannot be undone. This will permanently delete your account
+                    and remove your data from our servers.
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
           ),
         )}
       </nav>

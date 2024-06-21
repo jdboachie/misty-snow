@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/resizable";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
-import ConnectionsView from '@/components/connectionsview'
+import { ConnectionsButtonView } from '@/components/connectionsview'
 import ConnectionCardSkeleton from '@/components/closet/skeletons/ConnectionCardSkeleton';
 
 
@@ -26,8 +26,8 @@ function SecondaryNav() {
       maxSize={30}
     >
       <Tabs defaultValue="all">
-        <div className="grid py-2 px-4">
-          {/* <h4 className="font-semibold">Connections</h4> */}
+        <div className="grid grid-flow-col py-2 px-4">
+          <p className="py-1.5 text-muted-foreground">Connections</p>
           <TabsList className="w-full">
             <TabsTrigger value="all" className="w-full"> All </TabsTrigger>
             <TabsTrigger value="active" className="w-full"> Active </TabsTrigger>
@@ -43,7 +43,7 @@ function SecondaryNav() {
           </form>
         </div>
         <TabsContent value="all" className="m-0 px-4">
-         <ConnectionsView />
+          <ConnectionsButtonView />
         </TabsContent>
         <TabsContent value="active" className="m-0 px-4">
           <ConnectionCardSkeleton />

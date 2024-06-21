@@ -18,10 +18,10 @@ export function SignOut () {
   return (
     <Button
       variant={'ghost'}
-      className="p-0 px-1.5 flex justify-start font-normal"
+      className="w-full h-8 rounded-md px-1.5 py-2 flex justify-start font-normal"
       onClick={() => signOut()}
     >
-      Sign Out
+     <span className="p-0">Sign out</span>
     </Button>
   )
 }

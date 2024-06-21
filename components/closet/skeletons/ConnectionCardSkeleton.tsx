@@ -4,7 +4,7 @@ import { Empty } from '@/components/ui/empty';
 
 const ConnectionCardSkeleton = () => {
   return (
-    <Skeleton className='font-mono border bg-primary-foregroun bg-transparent shadow rounded-lg p-4 grid gap-2'>
+    <Skeleton className='border bg-transparent shadow rounded-lg p-4 grid gap-2'>
       <div className="flex gap-4 py-1 items-center justify-start">
         <Empty className="size-12 rounded-full"/>
         <Empty className='w-32 h-6'/>
