@@ -37,7 +37,7 @@ const MainNav = ({defaultSize, defaultCollapsed}: {defaultSize: number, defaultC
       defaultSize={resolvedSize}
       collapsedSize={navCollapsedSize}
       collapsible={true}
-      minSize={4}
+      minSize={10}
       maxSize={25}
       onCollapse={() => {
         setIsCollapsed(true);
@@ -103,7 +103,7 @@ const MainNav = ({defaultSize, defaultCollapsed}: {defaultSize: number, defaultC
                 </div>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent className="mx-2">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuSeparator />

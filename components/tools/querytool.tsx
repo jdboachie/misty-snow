@@ -9,6 +9,7 @@ import {
   Trash as TrashIcon,
   Play as PlayIcon,
   Share as ShareIcon,
+  Smiley,
 } from '@phosphor-icons/react';
 // import { LoadingIcon } from '@/components/icons';
 import { toast } from 'sonner';
@@ -23,7 +24,8 @@ import {
 import { Separator } from '../ui/separator';
 import { Input } from '../ui/input';
 import { useTheme } from 'next-themes';
-
+import EmojiPicker from 'emoji-picker-react';
+import Image from 'next/image';
 
 
 const QueryTool = () => {
@@ -34,6 +36,7 @@ const QueryTool = () => {
   const [outputData, setOutputData] = useState<{ columns: { name: string, type: number }[]; rows: any[] } | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [code, setCode] = useState<string>('');
+  const [emojiURL, setEmojiURL] = useState<string>('https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f601.png')
   const [queryCompletionTime, setQueryCompletionTime] = useState<number | null>(null);
 
   let editorTheme;
@@ -97,8 +100,24 @@ const QueryTool = () => {
         <ResizablePanelGroup direction="vertical" className='size-full'>
           <ResizablePanel defaultSize={50} minSize={10} className='size-full '>
             <form onSubmit={handleSubmit} className='flex flex-col size-full'>
-              <div className="flex justify-between gap-2 p-1 border-b">
-                <div className="grid grid-flow-col gap-2 p-1">
+              <div className="flex justify-between gap-2 p-1 px-2 border-b">
+                <div className="flex items-center">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger>
+                      <Button size={'icon'} variant={'ghost'}>
+                        <Image
+                          src={emojiURL}
+                          alt='queryemoji'
+                          width={1000}
+                          height={1000}
+                          className='size-5'
+                        />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className='rounded-xl'>
+                      <EmojiPicker onEmojiClick={(emojiData) => setEmojiURL(emojiData.imageUrl)} />
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                   <Input placeholder='untitled.sql' type='text' className='shadow-none font-mono font-medium border-0 focus:border-0 focus-visible:ring-0 focus:outline-0' />
                 </div>
                 <div className="flex gap-1 p-1">
