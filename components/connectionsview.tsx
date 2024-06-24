@@ -36,7 +36,7 @@ const ConnectionsListView = async () => {
             </div>
             <div className="flex gap-1 w-full truncate">
               <Badge variant={'outline'} className={`${connection.ssl && 'bg-green-500 dark:bg-green-700'} w-fit gap-1 flex`}><LockIcon /><p>SSL</p></Badge>
-              <Badge variant={'outline'} className=' truncate'>
+              <Badge variant={'outline'} className=' truncate w-fit gap-1 flex'>
                 <UserIcon />
                 <p className="truncate">{connection.username}</p>
               </Badge>
