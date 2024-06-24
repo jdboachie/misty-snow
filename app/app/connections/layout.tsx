@@ -1,10 +1,8 @@
 import { cookies } from "next/headers"
-
-import QueryTool from '@/components/tools/querytool'
 import { ResizableHandle, ResizablePanel } from '@/components/ui/resizable';
-import { QueryListView } from "@/components/query-list-view";
+import { ConnectionsListView } from '@/components/connection-list-view'
 
-const QueryPage = () => {
+const Layout = ({ children }: {children: React.ReactNode}) => {
 
   const layout = cookies().get("react-resizable-panels:layout")
   const defaultLayout = layout ? JSON.parse(layout.value) : undefined
@@ -16,14 +14,14 @@ const QueryPage = () => {
         minSize={20}
         maxSize={30}
       >
-        <QueryListView />
+        <ConnectionsListView />
       </ResizablePanel>
       <ResizableHandle withHandle />
-      <ResizablePanel defaultSize={defaultLayout[2]} className="grid grid-flow-col">
-        <QueryTool />
+      <ResizablePanel defaultSize={defaultLayout[2]}>
+        { children }
       </ResizablePanel>
     </>
   )
 }
 
-export default QueryPage
+export default Layout

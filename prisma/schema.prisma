@@ -62,16 +62,17 @@ model VerificationToken {
 }
 
 model Connection {
-  id           String   @id @default(cuid())
-  userId       String   @map("user_id")
-  username     String
-  hostname     String
-  password     String
-  port         Int
-  protocol     String
-  databaseName String
-  isConnected  Boolean  @default(true)
-  ssl          Boolean? @default(false)
+  id             String   @id @default(cuid())
+  userId         String   @map("user_id")
+  username       String
+  hostname       String
+  password       String
+  port           Int
+  protocol       String
+  databaseName   String
+  isConnected    Boolean  @default(true)
+  ssl            Boolean? @default(false)
+  relatedQueries Query[]
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -81,12 +82,15 @@ model Connection {
 model Query {
   id           String   @id @default(cuid())
   userId       String   @map("user_id")
-  queryName    String   @db.VarChar(255)
-  queryContent String?  @db.Text
+  connectionId String   @map("connection_id")
+  name         String   @db.VarChar(255)
+  content      String?  @db.Text
+  emojiUrl     String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now())
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  relatedConnection Connection @relation(fields: [connectionId], references: [id], onDelete: Cascade)
 
   @@map("queries")
 }
