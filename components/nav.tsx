@@ -35,15 +35,15 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
     label: string,
     icon: any,
     href?: string,
-    // variant: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined
   }
+
 
   const links: LinkInterface[] = [
     {
       title: "Home",
       label: "",
       icon: HomeIcon,
-      href: '/app/home'
+      href: '/app/home',
     }
     ,
     {
@@ -74,6 +74,7 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
   ]
 
   return (
+    // fix repeated code pathname.startsWith(link.href || 'undefined')
     <div
       data-collapsed={isCollapsed}
       className="group flex flex-col gap-4 py-2 data-[collapsed=true]:py-2"
@@ -86,9 +87,9 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
                 <Link
                   href={link.href || '#'}
                   className={cn(
-                    buttonVariants({ variant: pathname === link.href ? 'secondary': 'ghost', size: "icon" }),
+                    buttonVariants({ variant: pathname.startsWith(link.href || 'undefined') ? 'outline': 'ghost', size: "icon" }),
                     "h-9 w-9",
-                    pathname === link.href ?
+                    pathname.startsWith(link.href || 'undefined') ?
                       "dark:bg-muted dark:hover:bg-muted dark:hover:text-white" : "text-primary/70"
                   )}
                 >
@@ -110,11 +111,11 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
               key={index}
               href={link.href || '#'}
               className={cn(
-                buttonVariants({ variant: pathname === link.href ? 'secondary': 'ghost', size: "default" }),
-                pathname === link.href &&
+                buttonVariants({ variant: pathname.startsWith(link.href || 'undefined') ? 'outline': 'ghost', size: "default" }),
+                pathname.startsWith(link.href || 'undefined') &&
                   "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
                 "justify-start",
-                pathname !== link.href &&
+                !pathname.startsWith(link.href || 'undefined') &&
                 "text-primary/70"
               )}
             >
@@ -140,9 +141,9 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
                   <DialogTrigger>
                     <Button
                       size={'icon'}
-                      variant={pathname === link.href ? 'secondary' : 'ghost'}
+                      variant={pathname.startsWith(link.href || 'undefined') ? 'secondary' : 'ghost'}
                       className={cn(
-                        pathname === link.href ?
+                        pathname.startsWith(link.href || 'undefined') ?
                           "dark:bg-muted dark:hover:bg-muted dark:hover:text-white" : "text-muted-foreground"
                       )}
                     >
@@ -176,10 +177,10 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
             >
               <DialogTrigger>
                 <Button
-                  variant={pathname === link.href ? 'secondary' : 'ghost'}
+                  variant={pathname.startsWith(link.href || 'undefined') ? 'secondary' : 'ghost'}
                   className={cn(
                     "justify-start w-full",
-                    pathname === link.href ?
+                    pathname.startsWith(link.href || 'undefined') ?
                       "dark:bg-muted dark:hover:bg-muted dark:hover:text-white" : "text-muted-foreground"
                   )}
                 >

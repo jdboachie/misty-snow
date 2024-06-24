@@ -1,7 +1,7 @@
 import React from 'react'
 import { PlugsConnected } from '@phosphor-icons/react/dist/ssr'
 
-const Page = () => {
+export default function Page ({ params }: { params: { id: string } }) {
   return (
     <div className='grid divide-y'>
       <section className='flex gap-4 p-4 py-3 items-center'>
@@ -9,11 +9,8 @@ const Page = () => {
         <h4>Connections</h4>
       </section>
       <section className="p-4">
-        Connection details will be here. So getConnectionById(id from url) then display<br/>
-        Schema info will also be here for each connection.
+        connection id: {params.id}
       </section>
     </div>
   )
 }
-
-export default Page

@@ -91,9 +91,8 @@ const MainNav = ({defaultSize}: {defaultSize: number}) => {
                     <AvatarImage
                       src={data?.user.image || 'jude.png'}
                       alt="user avatar"
-                      className="border"
                     />
-                    <AvatarFallback className="border">--</AvatarFallback>
+                    <AvatarFallback></AvatarFallback>
                   </Avatar>
                   <div className={isCollapsed ? 'hidden': 'flex w-full justify-between ml-2'}>
                     <p className="text-xs text-start text-muted-foreground truncate grow pt-0.5">{data?.user.name}</p>
@@ -107,10 +106,6 @@ const MainNav = ({defaultSize}: {defaultSize: number}) => {
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="p-0">
-                {/* <Button
-                  variant={'ghost'}
-                  className="p-0 px-1.5 flex justify-start font-normal"
-                  onClick={() => signOut()}>Sign Out</Button> */}
                 <SignOut />
               </DropdownMenuItem>
             </DropdownMenuContent>

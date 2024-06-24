@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/resizable";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
-import { ConnectionsButtonView } from '@/components/connectionsview'
+import { ConnectionsListView } from '@/components/connectionsview'
 import ConnectionCardSkeleton from '@/components/closet/skeletons/ConnectionCardSkeleton';
 
 
@@ -43,7 +43,7 @@ function SecondaryNav() {
           </form>
         </div>
         <TabsContent value="all" className="m-0 px-4">
-          <ConnectionsButtonView />
+          <ConnectionsListView />
         </TabsContent>
         <TabsContent value="active" className="m-0 px-4">
           <ConnectionCardSkeleton />

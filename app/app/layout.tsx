@@ -15,7 +15,7 @@ export default function Home({
   children: React.ReactNode;
 }) {
 
-  const defaultLayout = [13, 27, 60];
+  const defaultLayout = [15, 30, 55];
 
   return (
     <main className="h-screen size-full">
