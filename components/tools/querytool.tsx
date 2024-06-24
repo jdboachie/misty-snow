@@ -99,7 +99,7 @@ const QueryTool = () => {
             <form onSubmit={handleSubmit} className='flex flex-col size-full'>
               <div className="flex justify-between gap-2 p-1 border-b">
                 <div className="grid grid-flow-col gap-2 p-1">
-                  <Input placeholder='untitled' type='text' className='shadow-none border-0 outline-0' />
+                  <Input placeholder='untitled.sql' type='text' className='shadow-none font-mono font-medium border-0 focus:border-0 focus-visible:ring-0 focus:outline-0' />
                 </div>
                 <div className="flex gap-1 p-1">
                   <Tooltip>
@@ -136,7 +136,7 @@ const QueryTool = () => {
                         </TooltipContent>
                       </Tooltip>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent>
+                    <DropdownMenuContent className='mx-2'>
                       <DropdownMenuItem onClick={handleExportCSV}>
                         <FileCsv className='size-4 mr-2'/>
                         <p className='text-xs'>Export to CSV</p>

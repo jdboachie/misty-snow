@@ -12,7 +12,7 @@ import {
   House as HomeIcon,
   Chat as ChatIcon,
   Database as DatabaseIcon,
-  Gear as GearIcon,
+  GearFine as GearIcon,
   ListMagnifyingGlass as ListMagnifyingGlassIcon
   } from "@phosphor-icons/react"
 import Link from "next/link";

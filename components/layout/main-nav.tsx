@@ -22,32 +22,34 @@ import { Empty } from "../ui/empty";
 import { ThemeToggle } from "../theme/theme-toggle";
 import UserButtonSkeleton from "../closet/skeletons/UserButtonSkeleton";
 import { SignOut } from "../auth/client";
+import { CommandDialogButton } from "../command-dialog";
 
-const MainNav = ({defaultSize}: {defaultSize: number}) => {
+const MainNav = ({defaultSize, defaultCollapsed}: {defaultSize: number, defaultCollapsed: boolean}) => {
 
-  // will get these from cookies later
-  const defaultCollapsed = false;
   const navCollapsedSize = 4;
-
   const { data } = useSession()
+  const resolvedSize = defaultCollapsed ? navCollapsedSize : defaultSize
 
   const [isCollapsed, setIsCollapsed] = React.useState<boolean>(defaultCollapsed);
 
   return (
     <ResizablePanel
-      defaultSize={defaultSize}
+      defaultSize={resolvedSize}
       collapsedSize={navCollapsedSize}
       collapsible={true}
-      minSize={12}
+      minSize={4}
       maxSize={25}
       onCollapse={() => {
         setIsCollapsed(true);
         document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(
-          isCollapsed,
+          true,
         )}`;
       }}
       onExpand={() => {
         setIsCollapsed(false);
+        document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(
+          false,
+        )}`;
       }}
       className={cn(
         "flex flex-col",
@@ -66,8 +68,8 @@ const MainNav = ({defaultSize}: {defaultSize: number}) => {
         <Nav isCollapsed={isCollapsed} />
       </div>
       <Separator />
-      <div className="grow p-2 py-4">
-
+      <div className="grow p-2">
+        <CommandDialogButton />
       </div>
       <Separator />
       <div className="grid">

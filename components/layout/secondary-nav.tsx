@@ -16,18 +16,17 @@ import { ConnectionsListView } from '@/components/connectionsview'
 import ConnectionCardSkeleton from '@/components/closet/skeletons/ConnectionCardSkeleton';
 
 
-function SecondaryNav() {
-  const defaultLayout = [17, 23, 60];
+function SecondaryNav({ defaultSize } : {defaultSize: number}) {
 
   return (
     <ResizablePanel
-      defaultSize={defaultLayout[1]}
+      defaultSize={defaultSize}
       minSize={20}
       maxSize={30}
     >
       <Tabs defaultValue="all">
         <div className="grid grid-flow-col py-2 px-4">
-          <p className="py-1.5 text-muted-foreground">Connections</p>
+          <p className="py-1.5 font-medium text-muted-foreground">Connections</p>
           <TabsList className="w-full">
             <TabsTrigger value="all" className="w-full"> All </TabsTrigger>
             <TabsTrigger value="active" className="w-full"> Active </TabsTrigger>
