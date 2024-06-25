@@ -7,7 +7,7 @@ import { QueryListView } from "@/components/query-list-view";
 const QueryPage = () => {
 
   const layout = cookies().get("react-resizable-panels:layout")
-  const defaultLayout = layout ? JSON.parse(layout.value) : undefined
+  const defaultLayout = layout ? JSON.parse(layout.value) : [15, 25, 60]
 
   return (
     <>

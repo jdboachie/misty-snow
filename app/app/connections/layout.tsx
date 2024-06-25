@@ -5,7 +5,7 @@ import { ConnectionsListView } from '@/components/connection-list-view'
 const Layout = ({ children }: {children: React.ReactNode}) => {
 
   const layout = cookies().get("react-resizable-panels:layout")
-  const defaultLayout = layout ? JSON.parse(layout.value) : undefined
+  const defaultLayout = layout ? JSON.parse(layout.value) : [15, 25, 60]
 
   return (
     <>
