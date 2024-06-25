@@ -178,7 +178,7 @@ export default function Home() {
               <TabsContent value="all" className="m-0 px-4">
                 <ContextMenu>
                   <ContextMenuTrigger>
-                    <div className="py-4 px-2 flex gap-2 items-center font-mono border shadow-none rounded-lg dark:bg-primary-foreground">
+                    <div className="py-4 px-2 flex gap-2 items-center border shadow-none rounded-lg dark:bg-primary-foreground">
                       <MongoDBIcon className="size-9" />
                       <div className="grid gap-1 w-full">
                         <span className="text-sm font-semibold">product_data</span>

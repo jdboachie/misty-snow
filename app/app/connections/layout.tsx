@@ -5,7 +5,7 @@ import { ConnectionsListView } from '@/components/connection-list-view'
 const Layout = ({ children }: {children: React.ReactNode}) => {
 
   const layout = cookies().get("react-resizable-panels:layout")
-  const defaultLayout = layout ? JSON.parse(layout.value) : [15, 25, 60]
+  const defaultLayout = layout ? JSON.parse(layout.value) : [13, 17, 70]
 
   return (
     <>
@@ -17,7 +17,7 @@ const Layout = ({ children }: {children: React.ReactNode}) => {
         <ConnectionsListView />
       </ResizablePanel>
       <ResizableHandle withHandle />
-      <ResizablePanel defaultSize={defaultLayout[2]}>
+      <ResizablePanel defaultSize={defaultLayout[2]} className="bg-background dark:bg-primary-foreground">
         { children }
       </ResizablePanel>
     </>

@@ -7,7 +7,7 @@ import { QueryListView } from "@/components/query-list-view";
 const QueryPage = () => {
 
   const layout = cookies().get("react-resizable-panels:layout")
-  const defaultLayout = layout ? JSON.parse(layout.value) : [15, 25, 60]
+  const defaultLayout = layout ? JSON.parse(layout.value) : [13, 17, 70]
 
   return (
     <>
@@ -19,7 +19,7 @@ const QueryPage = () => {
         <QueryListView />
       </ResizablePanel>
       <ResizableHandle withHandle />
-      <ResizablePanel defaultSize={defaultLayout[2]} className="grid grid-flow-col">
+      <ResizablePanel defaultSize={defaultLayout[2]} className="grid grid-flow-col bg-background dark:bg-primary-foreground">
         <QueryTool />
       </ResizablePanel>
     </>

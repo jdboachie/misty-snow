@@ -27,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans tracking-tight`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans tracking-normal`}>
         <SessionProvider>
           <ThemeProvider
             attribute="class"

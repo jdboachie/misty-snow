@@ -56,7 +56,7 @@ const ConnectionsListView = async () => {
       <div className='grid grid-flow-row gap-4 size-full px-4'>
         {connections.map((connection) => (
           <ContextMenu key={connection.id}>
-            <ContextMenuTrigger className='font-mono border bg-card dark:bg-primary-foreground drop-shadow-sm rounded-lg p-4 grid gap-2'>
+            <ContextMenuTrigger className='border bg-card dark:bg-primary-foreground drop-shadow-sm rounded-lg p-4 grid gap-2'>
               <div className="flex gap-4 items-center justify-start">
                 <PostgresIcon className="size-12 rounded-lg"/>
                 <p className="font-semibold">{connection.databaseName}</p>

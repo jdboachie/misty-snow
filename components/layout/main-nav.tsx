@@ -72,6 +72,15 @@ const MainNav = ({defaultSize, defaultCollapsed}: {defaultSize: number, defaultC
         <CommandDialogButton />
       </div>
       <Separator />
+      <div className="grid p-2 gap-2">
+        <p className="text-muted-foreground text-sm px-2">
+          Preferences
+        </p>
+        <div className="grid grid-flow-col items-center">
+          <ThemeToggle />
+        </div>
+      </div>
+      <Separator />
       <div className="grid">
         {data?.user ?
         <div className={cn(

@@ -97,7 +97,7 @@ const QueryTool = () => {
 
   return (
     <div className="grid size-full">
-    <ResizablePanelGroup direction="horizontal" className='size-full bg-background rounded-lg flex flex-col'>
+    <ResizablePanelGroup direction="horizontal" className='size-full flex flex-col'>
       <ResizablePanel defaultSize={75}>
         <ResizablePanelGroup direction="vertical" className='size-full'>
           <ResizablePanel defaultSize={50} minSize={10} className='size-full '>
@@ -120,7 +120,7 @@ const QueryTool = () => {
                       <EmojiPicker onEmojiClick={(emojiData) => setEmojiURL(emojiData.imageUrl)} />
                     </DropdownMenuContent>
                   </DropdownMenu>
-                  <Input placeholder='untitled.sql' type='text' className='shadow-none font-mono font-medium border-0 focus:border-0 focus-visible:ring-0 focus:outline-0' />
+                  <Input placeholder='untitled.sql' type='text' className='shadow-none font-medium border-0 focus:border-0 focus-visible:ring-0 focus:outline-0' />
                 </div>
                 <div className="flex gap-1 p-1">
                   <Tooltip>
@@ -243,7 +243,7 @@ const QueryTool = () => {
               )}
             </div>
           </ResizablePanel>
-          <div className="font-mono border-t rounded-b flex text-xs w-full bg-background p-2 gap-2">
+          <div className="border-t rounded-b flex text-xs w-full bg-background p-2 gap-2">
             <div className='flex gap-1'>Num rows: <p className="px-px rounded bg-primary-foreground">{outputData?.rows.length || '---'}</p> </div>
             <div className='flex gap-1'>Num columns: <p className="px-px rounded bg-primary-foreground">{outputData?.columns.length || '---'}</p></div>
             <div className='flex gap-1'>Query completed in <p className="px-px rounded bg-primary-foreground">{queryCompletionTime ? queryCompletionTime : '---'}ms</p></div>
