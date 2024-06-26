@@ -11,9 +11,27 @@ export const fetchAllConnections = async () => {
   return connections
 }
 
+export const fetchConnectionById = async ( {id} : {id : string} ) => {
+  noStore();
+
+  const connection: Connection | null = await prisma.connection.findFirst({
+    where: {
+      id: id
+    }
+  })
+
+  return connection
+}
+
 export const fetchAllQueries = async () => {
   noStore();
 
-  const queries: Query[] = await prisma.query.findMany()
+  const queries = await prisma.query.findMany(
+    {
+      include: {
+        relatedConnection: true
+      }
+    }
+  )
   return queries
 }

@@ -12,8 +12,8 @@ import {
   House as HomeIcon,
   Chat as ChatIcon,
   GearFine as GearIcon,
+  HardDrives as ConnectionsIcon,
   ListMagnifyingGlass as ListMagnifyingGlassIcon,
-  HardDrives as HardDrivesIcon
 } from "@phosphor-icons/react"
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -48,7 +48,7 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
     {
       title: "Connections",
       label: "3",
-      icon: HardDrivesIcon,
+      icon: ConnectionsIcon,
       href: '/app/connections',
     },
     {

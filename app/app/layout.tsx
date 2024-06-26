@@ -1,13 +1,9 @@
+import { auth } from "@/auth";
 import { cookies } from "next/headers"
-import {
-  ResizableHandle,
-  ResizablePanel,
-} from "@/components/ui/resizable";
+import { SignIn } from "@/components/auth/server";
 import MainNav from "@/components/layout/main-nav";
 import AppLayout from "@/components/layout/app-layout";
-import SecondaryNav from "@/components/layout/secondary-nav";
-import { auth } from "@/auth";
-import { SignIn } from "@/components/auth/server";
+import { ResizableHandle } from "@/components/ui/resizable";
 
 export default async function Home({
   children,
@@ -18,7 +14,7 @@ export default async function Home({
   const layout = cookies().get("react-resizable-panels:layout")
   const collapsed = cookies().get("react-resizable-panels:collapsed")
 
-  const defaultLayout = layout ? JSON.parse(layout.value) : [14, 16, 70]
+  const defaultLayout = layout ? JSON.parse(layout.value) : [15, 25, 65]
   const defaultCollapsed = collapsed ? JSON.parse(collapsed.value) : false
 
   const session = await auth()
@@ -27,6 +23,7 @@ export default async function Home({
     return (
       <>
         <p>You are not authorized to access this page</p>
+        <p className="">{session}</p>
         <SignIn />
       </>
     )

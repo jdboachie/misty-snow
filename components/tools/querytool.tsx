@@ -1,16 +1,20 @@
 'use client'
 
-import React, { useRef, useState } from 'react';
+// import { FieldDef } from 'pg';
 import Editor from '@monaco-editor/react';
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
-// import useDatabase from '@/lib/hooks';
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup
+} from "@/components/ui/resizable";
 import { Button } from '@/components/ui/button';
-import { FieldDef } from 'pg';
+  import React, { useRef, useState } from 'react';
+// import useDatabase from '@/lib/hooks';
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipArrow } from "@/components/ui/tooltip";
 import {
   Trash as TrashIcon,
   Play as PlayIcon,
-  Share as ShareIcon,
+  Download as DownloadIcon,
   Smiley,
 } from '@phosphor-icons/react';
 // import { LoadingIcon } from '@/components/icons';
@@ -98,115 +102,120 @@ const QueryTool = () => {
     <div className="grid size-full">
     <ResizablePanelGroup direction="horizontal" className='size-full flex flex-col'>
       <ResizablePanel defaultSize={75}>
-        <ResizablePanelGroup direction="vertical" className='size-full'>
-          <ResizablePanel defaultSize={50} minSize={10} className='size-full '>
-            <form onSubmit={handleSubmit} className='flex flex-col size-full'>
-              <div className="flex justify-between gap-2 p-1 px-2 border-b">
-                <div className="flex items-center">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger>
-                      <Button size={'icon'} variant={'ghost'}>
-                        <Image
-                          src={emojiURL}
-                          alt='queryemoji'
-                          width={1000}
-                          height={1000}
-                          className='size-5'
-                        />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className='rounded-xl'>
-                      <EmojiPicker onEmojiClick={(emojiData) => setEmojiURL(emojiData.imageUrl)} />
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                  <Input placeholder='untitled.sql' type='text' className='shadow-none font-medium border-0 focus:border-0 focus-visible:ring-0 focus:outline-0' />
-                </div>
-                <div className="flex gap-1 p-1">
+        <form onSubmit={handleSubmit} className='flex flex-col w-full'>
+          <div className="flex justify-between gap-2 p-1 px-2 border-b">
+            <div className="flex items-center">
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <Button size={'icon'} variant={'ghost'}>
+                    <Image
+                      src={emojiURL}
+                      alt='queryemoji'
+                      width={1000}
+                      height={1000}
+                      className='size-5'
+                    />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className='rounded-xl'>
+                  <EmojiPicker onEmojiClick={(emojiData) => setEmojiURL(emojiData.imageUrl)} />
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <Input placeholder='untitled.sql' type='text' className='shadow-none font-medium border-0 focus:border-0 focus-visible:ring-0 focus:outline-0' />
+            </div>
+            <div className="flex gap-1 p-1">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    disabled={isLoading}
+                    size={'icon'}
+                    className='flex'
+                    // type='reset'
+                    // onClick={() => {
+                    //   setCode('');
+                    //   setOutputData(null);
+                    // }}
+                    variant={'ghost'}
+                  >
+                    <FloppyDiskIcon className='size-4' />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Save</p>
+                  <TooltipArrow />
+                </TooltipContent>
+              </Tooltip>
+              <DropdownMenu>
+                <DropdownMenuTrigger>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <Button
-                        disabled={isLoading}
-                        size={'icon'}
-                        className='flex'
-                        // type='reset'
-                        // onClick={() => {
-                        //   setCode('');
-                        //   setOutputData(null);
-                        // }}
-                        variant={'ghost'}
-                      >
-                        <FloppyDiskIcon className='size-4' />
+                      <Button size={'icon'} variant={'ghost'}>
+                        <DownloadIcon className='size-4' />
+                        <p className="sr-only">Export</p>
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>Save</p>
-                      <TooltipArrow />
+                      <p>Export output</p>
                     </TooltipContent>
                   </Tooltip>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button size={'icon'} variant={'ghost'}>
-                            <ShareIcon className='size-4' />
-                            <p className="sr-only">Export</p>
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Export output</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className='mx-2'>
-                      <DropdownMenuItem onClick={handleExportCSV}>
-                        <FileCsv className='size-4 mr-2'/>
-                        <p className='text-xs'>Export to CSV</p>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <MicrosoftExcelLogo className='size-4 mr-2' />
-                        <p className="text-xs">Export to Microsoft Excel</p>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Button
-                        disabled={isLoading}
-                        size={'icon'}
-                        className='flex'
-                        type='submit'
-                        variant={'ghost'}
-                      >
-                        {isLoading ? (
-                          // <LoadingIcon className='size-5' />
-                          <div className="dev size-4"></div>
-                        ) : (
-                          <PlayIcon className='size-4' />
-                        )}
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      Run query
-                    </TooltipContent>
-                  </Tooltip>
-                </div>
-              </div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className='mx-2'>
+                  <DropdownMenuItem onClick={handleExportCSV}>
+                    <FileCsv className='size-4 mr-2'/>
+                    <p className='text-xs'>Export to CSV</p>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <MicrosoftExcelLogo className='size-4 mr-2' />
+                    <p className="text-xs">Export to Microsoft Excel</p>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Button
+                    disabled={isLoading}
+                    size={'icon'}
+                    className='flex'
+                    type='submit'
+                    variant={'ghost'}
+                  >
+                    {isLoading ? (
+                      // <LoadingIcon className='size-5' />
+                      <div className="dev size-4"></div>
+                    ) : (
+                      <PlayIcon className='size-4' />
+                    )}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  Run query
+                </TooltipContent>
+              </Tooltip>
+            </div>
+          </div>
+        </form>
+        <ResizablePanelGroup direction="vertical" className='size-full'>
+          <ResizablePanel defaultSize={50} minSize={0} className='size-full'>
               <Editor
                 height="100vh"
                 defaultLanguage="sql"
                 defaultValue="-- WRITE YOUR QUERY HERE"
                 theme={editorTheme}
               />
-            </form>
           </ResizablePanel>
           <ResizableHandle
             withHandle
             className='activehandle'
           />
           <ResizablePanel minSize={20} defaultSize={50}>
-            <div className={`dark:bg-darkest bg-background overflow-auto h-[calc(100%-49px)]`}>
+            <div className="border-b flex text-xs w-full p-2 gap-2">
+              <div className='flex gap-1'>Num rows: <p className="px-px rounded bg-primary-foreground">{outputData?.rows.length || '---'}</p> </div>
+              <div className='flex gap-1'>Num columns: <p className="px-px rounded bg-primary-foreground">{outputData?.columns.length || '---'}</p></div>
+              <div className='flex gap-1'>Query completed in <p className="px-px rounded bg-primary-foreground">{queryCompletionTime ? queryCompletionTime : '---'}ms</p></div>
+            </div>
+            <div className={`overflow-auto h-[calc(100%-49px)]`}>
               {outputData ? (
-                <table className='table-auto bg-primary-foreground w-fit h-fit text-left border-collapse transition-all duration-300 ease-in-out'>
+                <table className='table-auto w-fit h-fit text-left border-collapse transition-all duration-300 ease-in-out'>
                   <thead className='sticky top-[-1px] bg-primary-foreground drop-shadow max-h-[1rem] min-h-[1rem]'>
                     <tr className='truncate'>
                       {outputData.columns.map((col, index) => (
@@ -243,11 +252,6 @@ const QueryTool = () => {
               )}
             </div>
           </ResizablePanel>
-          <div className="border-t rounded-b flex text-xs w-full bg-background p-2 gap-2">
-            <div className='flex gap-1'>Num rows: <p className="px-px rounded bg-primary-foreground">{outputData?.rows.length || '---'}</p> </div>
-            <div className='flex gap-1'>Num columns: <p className="px-px rounded bg-primary-foreground">{outputData?.columns.length || '---'}</p></div>
-            <div className='flex gap-1'>Query completed in <p className="px-px rounded bg-primary-foreground">{queryCompletionTime ? queryCompletionTime : '---'}ms</p></div>
-          </div>
         </ResizablePanelGroup>
       </ResizablePanel>
     </ResizablePanelGroup>

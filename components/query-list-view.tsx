@@ -10,7 +10,7 @@ import {
   ContextMenuSubTrigger,
   ContextMenuCheckboxItem,
 } from "@/components/ui/context-menu"
-import { Query } from '@prisma/client/edge';
+import { Connection, Query } from '@prisma/client/edge';
 import { fetchAllQueries } from '@/lib/actions';
 import { Button } from "./ui/button";
 import Image from "next/image";
@@ -26,11 +26,12 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import ConnectionCardSkeleton from '@/components/closet/skeletons/ConnectionCardSkeleton';
+import { Badge } from "./ui/badge";
 
 
 const QueryListView = async () => {
 
-  const queries: Query[] = await fetchAllQueries()
+  const queries = await fetchAllQueries()
 
   return (
     <Tabs defaultValue="all">
@@ -51,7 +52,7 @@ const QueryListView = async () => {
         </form>
       </div>
       <TabsContent value='all'>
-        <div className='grid grid-flow-row gap-4 size-full px-4'>
+        <div className='grid grid-flow-row gap-1 size-full px-4'>
           {queries.map((query) => (
             <ContextMenu key={query.id}>
               <ContextMenuTrigger>
@@ -67,6 +68,7 @@ const QueryListView = async () => {
                     className="size-5"
                   />
                   {query.name}
+                  <Badge variant={'outline'}>{query.relatedConnection.databaseName}</Badge>
                 </Button>
               </ContextMenuTrigger>
               <ContextMenuContent className="w-56">
