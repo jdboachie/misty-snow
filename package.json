@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "16": "link:@geist/new-icons/16",
     "@auth/prisma-adapter": "^2.2.0",
     "@monaco-editor/react": "^4.6.0",
     "@nextui-org/skeleton": "^2.0.29",

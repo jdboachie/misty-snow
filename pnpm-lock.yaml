@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '16':
+    specifier: link:@geist/new-icons/16
+    version: link:@geist/new-icons/16
   '@auth/prisma-adapter':
     specifier: ^2.2.0
     version: 2.2.0(@prisma/client@5.15.1)

@@ -6,7 +6,7 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/componen
 // import useDatabase from '@/lib/hooks';
 import { Button } from '@/components/ui/button';
 import { FieldDef } from 'pg';
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger, TooltipArrow } from "@/components/ui/tooltip";
 import {
   Trash as TrashIcon,
   Play as PlayIcon,
@@ -16,14 +16,13 @@ import {
 // import { LoadingIcon } from '@/components/icons';
 import { toast } from 'sonner';
 import Papa from 'papaparse';
-import { FileCsv, FileSql, FloppyDisk as FloppyDiskIcon, Folder, MicrosoftExcelLogo } from '@phosphor-icons/react';
+import { FileCsv, FloppyDisk as FloppyDiskIcon, MicrosoftExcelLogo } from '@phosphor-icons/react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Separator } from '../ui/separator';
 import { Input } from '../ui/input';
 import { useTheme } from 'next-themes';
 import EmojiPicker from 'emoji-picker-react';
@@ -141,6 +140,7 @@ const QueryTool = () => {
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>Save</p>
+                      <TooltipArrow />
                     </TooltipContent>
                   </Tooltip>
                   <DropdownMenu>

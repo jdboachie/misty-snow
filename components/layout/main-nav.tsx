@@ -98,7 +98,7 @@ const MainNav = ({defaultSize, defaultCollapsed}: {defaultSize: number, defaultC
                 )}
               >
                 <div className={cn("flex items-center w-full", isCollapsed && 'w-fit')}>
-                  <Avatar>
+                  <Avatar className="border">
                     <AvatarImage
                       src={data?.user.image || 'jude.png'}
                       alt="user avatar"

@@ -11,10 +11,10 @@ import {
 import {
   House as HomeIcon,
   Chat as ChatIcon,
-  Database as DatabaseIcon,
   GearFine as GearIcon,
-  ListMagnifyingGlass as ListMagnifyingGlassIcon
-  } from "@phosphor-icons/react"
+  ListMagnifyingGlass as ListMagnifyingGlassIcon,
+  HardDrives as HardDrivesIcon
+} from "@phosphor-icons/react"
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -24,7 +24,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { usePathname } from "next/navigation";
-
 
 const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
 
@@ -49,7 +48,7 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
     {
       title: "Connections",
       label: "3",
-      icon: DatabaseIcon,
+      icon: HardDrivesIcon,
       href: '/app/connections',
     },
     {
@@ -87,7 +86,7 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
                 <Link
                   href={link.href || '#'}
                   className={cn(
-                    buttonVariants({ variant: pathname.startsWith(link.href || 'undefined') ? 'outline': 'ghost', size: "icon" }),
+                    buttonVariants({ variant: pathname.startsWith(link.href || 'undefined') ? 'default': 'ghost', size: "icon" }),
                     "h-9 w-9",
                     pathname.startsWith(link.href || 'undefined') ?
                       "dark:bg-muted dark:hover:bg-muted dark:hover:text-white" : "text-muted-foreground"
@@ -111,7 +110,7 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
               key={index}
               href={link.href || '#'}
               className={cn(
-                buttonVariants({ variant: pathname.startsWith(link.href || 'undefined') ? 'outline': 'ghost', size: "default" }),
+                buttonVariants({ variant: pathname.startsWith(link.href || 'undefined') ? 'default': 'ghost', size: "default" }),
                 pathname.startsWith(link.href || 'undefined') &&
                   "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white",
                 "justify-start",
@@ -141,7 +140,7 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
                   <DialogTrigger>
                     <Button
                       size={'icon'}
-                      variant={pathname.startsWith(link.href || 'undefined') ? 'secondary' : 'ghost'}
+                      variant={pathname.startsWith(link.href || 'undefined') ? 'default' : 'ghost'}
                       className={cn(
                         pathname.startsWith(link.href || 'undefined') ?
                           "dark:bg-muted dark:hover:bg-muted dark:hover:text-white" : "text-muted-foreground"
@@ -177,7 +176,7 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
             >
               <DialogTrigger>
                 <Button
-                  variant={pathname.startsWith(link.href || 'undefined') ? 'secondary' : 'ghost'}
+                  variant={pathname.startsWith(link.href || 'undefined') ? 'default' : 'ghost'}
                   className={cn(
                     "justify-start w-full",
                     pathname.startsWith(link.href || 'undefined') ?
