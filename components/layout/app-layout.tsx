@@ -1,13 +1,5 @@
 'use client'
-
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable";
-import MainNav from "@/components/layout/main-nav";
-import SecondaryNav from "@/components/layout/secondary-nav";
-
+import { ResizablePanelGroup } from "@/components/ui/resizable";
 
 export default function AppLayout({
   children,
