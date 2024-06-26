@@ -141,8 +141,8 @@ const QueryTool = () => {
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Save</p>
                   <TooltipArrow />
+                  <p>Save</p>
                 </TooltipContent>
               </Tooltip>
               <DropdownMenu>
@@ -155,6 +155,7 @@ const QueryTool = () => {
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
+                      <TooltipArrow />
                       <p>Export output</p>
                     </TooltipContent>
                   </Tooltip>
@@ -188,6 +189,7 @@ const QueryTool = () => {
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
+                  <TooltipArrow />
                   Run query
                 </TooltipContent>
               </Tooltip>

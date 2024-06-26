@@ -20,6 +20,7 @@ import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Tooltip,
+  TooltipArrow,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
@@ -97,6 +98,7 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right" className="flex items-center gap-4">
+                <TooltipArrow />
                 {link.title}
                 {link.label && (
                   <span className="ml-auto text-muted-foreground">
@@ -162,6 +164,7 @@ const Nav = ({ isCollapsed } : { isCollapsed : boolean }) => {
                 </Dialog>
               </TooltipTrigger>
               <TooltipContent side="right" className="flex items-center gap-4">
+                <TooltipArrow />
                 {link.title}
                 {link.label && (
                   <span className="ml-auto text-muted-foreground">
